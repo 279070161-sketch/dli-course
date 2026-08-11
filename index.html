@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seeed reBot Arm B601-RS: Physical AI & VLA Model Course | NVIDIA DLI Series</title>
+  <meta name="description" content="Master Physical AI, Sim-to-Real, Cosmos Transfer Data Augmentation, and Isaac GR00T N1.7 TensorRT deployment on Jetson AGX Thor and Orin with reBot Arm B601-RS.">
+
+  <!-- Google Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Local Design System Stylesheet -->
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Marked.js Markdown Parser & Prism Syntax Highlighter -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       Header Navbar
+       ========================================================================== -->
+  <header class="dli-header">
+    <div class="brand-container">
+      <button class="mobile-menu-btn" id="mobile-menu-btn" title="Toggle Navigation Sidebar">
+        <i class="fas fa-bars"></i>
+      </button>
+      <img src="image/seeed_logo_w.svg" alt="Seeed Studio Logo" class="brand-logo-img">
+      <div class="brand-title">
+        <span>DLI Course</span>
+        <span class="brand-subtitle">| Seeed reBot Arm</span>
+      </div>
+    </div>
+
+    <div class="header-right">
+      <button class="search-trigger-btn" id="search-trigger-btn">
+        <span class="search-text-full"><i class="fas fa-search" style="margin-right: 0.5rem; color: var(--nv-green);"></i> Search course modules & code...</span>
+        <span class="search-icon-compact"><i class="fas fa-search"></i></span>
+        <span class="kbd-shortcut">Ctrl K</span>
+      </button>
+      <button class="icon-btn" id="theme-toggle-btn" title="Toggle Light/Dark Theme">
+        <i class="fas fa-sun"></i>
+      </button>
+      <button class="icon-btn" id="toc-toggle-btn" title="On This Page Index">
+        <i class="fas fa-list-ul"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       Landing Page View
+       ========================================================================== -->
+  <main id="landing-view">
+    
+    <!-- Landing Hero View -->
+    <section class="hero-section">
+      <canvas class="ascii-bg" id="hero-ascii-canvas" aria-hidden="true"></canvas>
+      <div class="hero-content">
+        <div class="badge-tag">
+          <i class="fas fa-robot"></i> NVIDIA Isaac Lab & GR00T N1.7 Certified Course
+        </div>
+        <h1 class="hero-title">
+          Train an SO-101 / reBot Arm From Sim-to-Real With NVIDIA Isaac
+        </h1>
+        <p class="hero-desc">
+          An end-to-end hands-on curriculum covering LeRobot teleoperation data collection, Isaac Sim digital twin emulation, Cosmos Transfer video-to-video scene augmentation, Isaac GR00T N1.7 VLA model fine-tuning, and Jetson AGX Thor / Orin 7-engine TensorRT edge deployment.
+        </p>
+
+        <!-- Stats Bar -->
+        <div class="hero-stats-bar">
+          <div class="stat-item">
+            <span class="stat-val">19</span>
+            <span class="stat-lbl">Detailed Modules</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-val">5</span>
+            <span class="stat-lbl">Core Chapters</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-val">Sim-to-Real</span>
+            <span class="stat-lbl">Full Pipeline</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-val">7-Engine</span>
+            <span class="stat-lbl">TensorRT Jetson</span>
+          </div>
+        </div>
+
+        <div class="cta-group">
+          <button class="btn-primary" id="hero-start-btn">
+            <i class="fas fa-play"></i> Start Learning Now
+          </button>
+          <button class="btn-secondary" id="hero-explore-btn">
+            <i class="fas fa-layer-group"></i> Explore Modules
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <div class="landing-body">
+      
+      <!-- Key Features Overview Grid -->
+      <section>
+        <h2 class="section-title"><i class="fas fa-microchip"></i> Physical AI & VLA Model Technical Stack</h2>
+        <p class="section-sub">Master cutting-edge robotics learning pipelines with industry-grade software and hardware targets.</p>
+
+        <div class="overview-grid">
+          <div class="feature-card">
+            <div class="feature-icon"><i class="fas fa-hand-holding"></i></div>
+            <h3>1. Real & Sim Data Collection</h3>
+            <p>Gather teleoperation trajectories using Seeed reBot Arm B601-RS in physical environments and emulate dual-camera SO-ARM101 setups inside NVIDIA Isaac Sim.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon"><i class="fas fa-film"></i></div>
+            <h3>2. Cosmos Transfer Scene Augmentation</h3>
+            <p>Empower imitation learning policies using NVIDIA Cosmos3 Transfer video-to-video generative models with Canny edge & SAM2 segmentation control signals.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon"><i class="fas fa-brain"></i></div>
+            <h3>3. Isaac GR00T N1.7 Fine-Tuning</h3>
+            <p>Train cross-embodiment Vision-Language-Action (VLA) models using System 2 VLM + System 1 Diffusion Transformer architecture on your custom robot dataset.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon"><i class="fas fa-bolt"></i></div>
+            <h3>4. Jetson TensorRT Acceleration</h3>
+            <p>Export ONNX graphs and compile a target-specific 7-engine TensorRT bundle on Jetson AGX Thor and Orin for real-time edge execution.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Course Chapters Explorer -->
+      <section id="chapters-section">
+        <h2 class="section-title"><i class="fas fa-book-open"></i> Course Curriculum Explorer</h2>
+        <p class="section-sub">Select any chapter module below to launch the interactive documentation reader workspace.</p>
+
+        <div class="chapters-grid" id="chapters-grid">
+          <!-- Dynamically Populated by app.js -->
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ==========================================================================
+       Reader View (Documentation Workspace)
+       ========================================================================== -->
+  <div id="reader-view" style="display: none;">
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+    <div class="reader-layout">
+
+      <!-- Left Sidebar Navigation -->
+      <nav class="sidebar-nav">
+        <div class="sidebar-header-action">
+          <button class="back-to-overview-btn" id="back-to-overview">
+            <i class="fas fa-arrow-left"></i> Course Overview
+          </button>
+        </div>
+        <div id="sidebar-nav-list">
+          <!-- Dynamically Populated by app.js -->
+        </div>
+      </nav>
+
+      <!-- Center Main Reader Content -->
+      <main class="main-reader">
+        <div class="reader-breadcrumb">
+          <i class="fas fa-home"></i> <a href="#" id="breadcrumb-home">Course</a> / <span id="breadcrumb-text">Overview</span>
+        </div>
+
+        <article class="markdown-body" id="markdown-body">
+          <!-- Dynamically Populated by Marked.js -->
+        </article>
+
+        <!-- Pagination Controls -->
+        <div class="reader-pagination">
+          <button class="pag-btn" id="prev-lesson-btn">
+            <span class="pag-label"><i class="fas fa-chevron-left"></i> Previous Module</span>
+            <span class="pag-title">--</span>
+          </button>
+          <button class="pag-btn" id="next-lesson-btn" style="text-align: right;">
+            <span class="pag-label">Next Module <i class="fas fa-chevron-right"></i></span>
+            <span class="pag-title">--</span>
+          </button>
+        </div>
+      </main>
+
+      <!-- Right Sidebar Table of Contents -->
+      <aside class="toc-nav">
+        <div class="toc-title">ON THIS PAGE</div>
+        <ul class="toc-list" id="toc-list">
+          <!-- Dynamically Populated by app.js -->
+        </ul>
+      </aside>
+
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       Global Modals & Lightbox
+       ========================================================================== -->
+
+  <!-- Search Modal -->
+  <div class="modal-overlay" id="search-modal">
+    <div class="modal-container">
+      <div class="search-input-header">
+        <i class="fas fa-search"></i>
+        <input type="text" class="search-input-field" id="search-input" placeholder="Search course title, commands, parameters..." autocomplete="off">
+      </div>
+      <div class="search-results-list" id="search-results">
+        <!-- Dynamically Populated by app.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Image Lightbox Modal -->
+  <div id="image-lightbox">
+    <img src="" id="lightbox-img" alt="Zoomed View">
+  </div>
+
+  <!-- Course Data & Main Application Scripts -->
+  <script src="js/course-data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
