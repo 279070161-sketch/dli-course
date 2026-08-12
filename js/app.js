@@ -819,6 +819,20 @@
       }
     });
 
+    // Auto close drawers & backdrop overlay when expanding window width
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 1100) {
+        if (sidebarNavEl) sidebarNavEl.classList.remove('drawer-open');
+        if (sidebarOverlay && (!tocNavEl || !tocNavEl.classList.contains('drawer-open'))) {
+          sidebarOverlay.classList.remove('active');
+        }
+      }
+      if (window.innerWidth > 1400) {
+        if (tocNavEl) tocNavEl.classList.remove('drawer-open');
+        if (sidebarOverlay) sidebarOverlay.classList.remove('active');
+      }
+    }, { passive: true });
+
     // Brand Click -> Return to Landing Page
     document.querySelectorAll('.brand-container').forEach(b => {
       b.addEventListener('click', (e) => {
