@@ -966,9 +966,15 @@
       const heroView = document.getElementById('landing-view');
       if (heroView && heroView.style.display !== 'none') {
         const rect = canvas.getBoundingClientRect();
-        if (rect.bottom > 0 && rect.top < window.innerHeight) {
-          const t = (now - t0) / 1000 * 0.55;
-          draw(t);
+        if (rect.width >= 4 && rect.height >= 4) {
+          // Auto setup context if not initialized (e.g. initial load was on reader view) or if size changed
+          if (!ctx || Math.abs(w - rect.width) > 2 || Math.abs(h - rect.height) > 2) {
+            setup();
+          }
+          if (rect.bottom > 0 && rect.top < window.innerHeight) {
+            const t = (now - t0) / 1000 * 0.55;
+            draw(t);
+          }
         }
       }
       requestAnimationFrame(tick);
