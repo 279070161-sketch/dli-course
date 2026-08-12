@@ -87,6 +87,11 @@
 
     // Scroll to top
     window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // Track Page View Event
+    if (window.trackPageView) {
+      window.trackPageView(`#lesson-${lesson.id}`, lesson.title);
+    }
   }
 
   // Render Landing Page Chapters Grid
@@ -468,6 +473,9 @@
         e.stopPropagation();
         navigator.clipboard.writeText(rawText).then(() => {
           copyBtn.innerHTML = `<i class="fas fa-check" style="color:var(--nv-green)"></i><span style="color:var(--nv-green)">已复制</span>`;
+          if (window.trackEvent) {
+            window.trackEvent('copy_code_snippet', { language: lang });
+          }
           setTimeout(() => {
             copyBtn.innerHTML = `<i class="far fa-copy"></i><span>复制</span>`;
           }, 2000);
@@ -627,6 +635,10 @@
              l.content.toLowerCase().includes(query);
     });
 
+    if (window.trackEvent) {
+      window.trackEvent('search_query', { keyword: query, matches_count: matches.length });
+    }
+
     if (matches.length === 0) {
       searchResults.innerHTML = '<div style="padding: 1rem; color: var(--text-muted); text-align: center;">No matching lessons found.</div>';
       return;
@@ -732,7 +744,12 @@
     });
 
     // Hero CTA Buttons
-    document.getElementById('hero-start-btn').addEventListener('click', () => showReaderView(0));
+    document.getElementById('hero-start-btn').addEventListener('click', () => {
+      if (window.trackEvent) {
+        window.trackEvent('click_start_learning', { location: 'hero' });
+      }
+      showReaderView(0);
+    });
     document.getElementById('hero-explore-btn').addEventListener('click', () => {
       document.getElementById('chapters-section').scrollIntoView({ behavior: 'smooth' });
     });
@@ -790,6 +807,10 @@
       const logoImg = document.querySelector('.brand-logo-img');
       if (logoImg) {
         logoImg.src = newMode === 'light' ? 'image/seeed_logo_c.svg' : 'image/seeed_logo_w.svg';
+      }
+
+      if (window.trackEvent) {
+        window.trackEvent('toggle_theme', { mode: newMode });
       }
     });
 
