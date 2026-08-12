@@ -736,6 +736,33 @@ canvas.ascii-bg {
   z-index: 100;
 }
 
+/* Sidebar Mobile Top Header (Folded with menu on narrow mobile screens) */
+.sidebar-mobile-header {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 1rem;
+  margin: -1.25rem -1rem 1.25rem -1rem;
+  border-bottom: 1px solid var(--nv-border);
+  background-color: var(--nv-surface-2);
+}
+
+.sidebar-mobile-header .mobile-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.sidebar-mobile-header .mobile-brand img {
+  height: 24px;
+}
+
+.sidebar-mobile-header .mobile-brand .brand-title {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--text-primary);
+}
+
 .sidebar-header-action {
   margin-bottom: 1.25rem;
 }
@@ -1699,6 +1726,16 @@ canvas.ascii-bg {
 @media (max-width: 768px) {
   .hero-title {
     font-size: 2rem;
+  }
+
+  /* Show Logo & Theme Toggle at top of left sidebar drawer on mobile */
+  .sidebar-mobile-header {
+    display: flex !important;
+  }
+
+  /* Hide header theme button on narrow mobile to keep header clean */
+  .header-right #theme-toggle-btn {
+    display: none !important;
   }
 }
 

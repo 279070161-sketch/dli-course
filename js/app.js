@@ -906,22 +906,31 @@
       imageLightbox.classList.remove('active');
     });
 
-    // Theme Switcher Toggle
-    themeToggleBtn.addEventListener('click', () => {
+    // Theme Switcher Toggle Handler (Desktop & Mobile Drawer)
+    function toggleTheme() {
       const currentMode = document.documentElement.getAttribute('data-theme');
       const newMode = currentMode === 'light' ? 'dark' : 'light';
       document.documentElement.setAttribute('data-theme', newMode);
-      themeToggleBtn.innerHTML = newMode === 'light' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
       
-      const logoImg = document.querySelector('.brand-logo-img');
-      if (logoImg) {
-        logoImg.src = newMode === 'light' ? 'image/seeed_logo_c.svg' : 'image/seeed_logo_w.svg';
-      }
+      const iconHtml = newMode === 'light' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
+      if (themeToggleBtn) themeToggleBtn.innerHTML = iconHtml;
+      
+      const mobileThemeBtn = document.getElementById('mobile-theme-toggle-btn');
+      if (mobileThemeBtn) mobileThemeBtn.innerHTML = iconHtml;
+      
+      const logoImgs = document.querySelectorAll('.brand-logo-img');
+      logoImgs.forEach(img => {
+        img.src = newMode === 'light' ? 'image/seeed_logo_c.svg' : 'image/seeed_logo_w.svg';
+      });
 
       if (window.trackEvent) {
         window.trackEvent('toggle_theme', { mode: newMode });
       }
-    });
+    }
+
+    if (themeToggleBtn) themeToggleBtn.addEventListener('click', toggleTheme);
+    const mobileThemeToggleBtn = document.getElementById('mobile-theme-toggle-btn');
+    if (mobileThemeToggleBtn) mobileThemeToggleBtn.addEventListener('click', toggleTheme);
 
     // Back to Top Floating Action Button Event Listeners
     const backToTopBtn = document.getElementById('back-to-top-btn');
