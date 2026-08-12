@@ -779,7 +779,7 @@
       if (e.target === searchModal) searchModal.style.display = 'none';
     });
 
-    // Keyboard Shortcuts (Ctrl + K)
+    // Keyboard Shortcuts (Ctrl + K, ESC, ArrowLeft/Right)
     document.addEventListener('keydown', (e) => {
       if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
         e.preventDefault();
@@ -789,6 +789,24 @@
       if (e.key === 'Escape') {
         searchModal.style.display = 'none';
         imageLightbox.style.display = 'none';
+      }
+
+      // Arrow keys (← / →) for Previous / Next lesson navigation in reader view
+      if (readerView.style.display !== 'none' && searchModal.style.display !== 'flex' && imageLightbox.style.display !== 'flex') {
+        const isEditing = ['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName) || document.activeElement.isContentEditable;
+        if (!isEditing) {
+          if (e.key === 'ArrowLeft') {
+            if (currentLessonIndex > 0) {
+              e.preventDefault();
+              showReaderView(currentLessonIndex - 1);
+            }
+          } else if (e.key === 'ArrowRight') {
+            if (currentLessonIndex < lessons.length - 1) {
+              e.preventDefault();
+              showReaderView(currentLessonIndex + 1);
+            }
+          }
+        }
       }
     });
 
