@@ -906,17 +906,6 @@
       imageLightbox.classList.remove('active');
     });
 
-    // Print / Export PDF Action
-    const printBtn = document.getElementById('print-btn');
-    if (printBtn) {
-      printBtn.addEventListener('click', () => {
-        if (window.trackEvent) {
-          window.trackEvent('export_pdf_print');
-        }
-        window.print();
-      });
-    }
-
     // Theme Switcher Toggle
     themeToggleBtn.addEventListener('click', () => {
       const currentMode = document.documentElement.getAttribute('data-theme');
