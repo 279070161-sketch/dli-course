@@ -1689,23 +1689,4 @@ canvas.ascii-bg {
   z-index: 105;
 }
 
-/* Font Size Scaling Options */
-.markdown-body.font-size-md {
-  font-size: 1.15rem !important;
-}
-
-.markdown-body.font-size-md p,
-.markdown-body.font-size-md li {
-  line-height: 1.8;
-}
-
-.markdown-body.font-size-lg {
-  font-size: 1.28rem !important;
-}
-
-.markdown-body.font-size-lg p,
-.markdown-body.font-size-lg li {
-  line-height: 1.85;
-}
-
 

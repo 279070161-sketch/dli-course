@@ -879,32 +879,6 @@
       });
     }
 
-    // Font Size Adjuster Control (Normal / Medium / Large)
-    const fontSizeBtn = document.getElementById('font-size-btn');
-    const FONT_CLASSES = ['', 'font-size-md', 'font-size-lg'];
-    let currentFontIdx = parseInt(localStorage.getItem('dli_font_size_idx') || '0', 10);
-
-    function applyFontSize() {
-      const idx = currentFontIdx % FONT_CLASSES.length;
-      markdownBody.classList.remove('font-size-md', 'font-size-lg');
-      if (FONT_CLASSES[idx]) {
-        markdownBody.classList.add(FONT_CLASSES[idx]);
-      }
-      if (fontSizeBtn) {
-        const labels = ['Normal', 'Medium', 'Large'];
-        fontSizeBtn.title = `Font Size: ${labels[idx]}`;
-      }
-    }
-
-    if (fontSizeBtn) {
-      fontSizeBtn.addEventListener('click', () => {
-        currentFontIdx = (currentFontIdx + 1) % FONT_CLASSES.length;
-        localStorage.setItem('dli_font_size_idx', currentFontIdx);
-        applyFontSize();
-      });
-    }
-    applyFontSize();
-
     // Top Glowing Reading Progress Bar Listener
     const progressBar = document.getElementById('reading-progress-bar');
     function updateReadingProgress() {
