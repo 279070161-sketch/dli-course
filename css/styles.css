@@ -1608,3 +1608,71 @@ canvas.ascii-bg {
     font-size: 2rem;
   }
 }
+
+/* Floating Back-to-Top Button */
+.back-to-top-btn {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--nv-green);
+  color: #000000;
+  border: none;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 250;
+  box-shadow: 0 4px 20px rgba(118, 185, 0, 0.4);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.back-to-top-btn.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.back-to-top-btn:hover {
+  background: #8ce000;
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 6px 24px rgba(118, 185, 0, 0.6);
+}
+
+/* Markdown Responsive Table Scrollbar Wrapper */
+.markdown-body .table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid var(--nv-border);
+}
+
+.markdown-body .table-wrapper table {
+  margin-bottom: 0 !important;
+  border: none !important;
+}
+
+/* Markdown Image Loading & Cursor Indicator */
+.markdown-body img {
+  cursor: zoom-in;
+  transition: opacity 0.3s ease, transform 0.2s ease;
+}
+
+.markdown-body img:hover {
+  transform: scale(1.008);
+}
+
+/* Copy Code Button Toast/Tooltip */
+.copy-code-btn.copied {
+  background: rgba(118, 185, 0, 0.2) !important;
+  color: var(--nv-green) !important;
+  border-color: var(--nv-green) !important;
+}
+

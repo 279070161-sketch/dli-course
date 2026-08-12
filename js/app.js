@@ -233,6 +233,9 @@
     // Post-process Links to open in a new tab
     enhanceLinks();
 
+    // Post-process Tables to add responsive wrappers
+    enhanceTables();
+
     // Generate Right Sidebar TOC
     generateTOC();
   }
@@ -519,7 +522,7 @@
     return d;
   }
 
-  // Enhance Images with relative path correction & Lightbox Zoom
+  // Enhance Images with relative path correction, lazy loading & Lightbox Zoom
   function enhanceImages() {
     const imgs = markdownBody.querySelectorAll('img');
     imgs.forEach(img => {
@@ -533,10 +536,28 @@
         img.src = src;
       }
 
+      // Add performance attributes
+      img.setAttribute('loading', 'lazy');
+      img.setAttribute('decoding', 'async');
+
       img.addEventListener('click', () => {
         lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt || 'Zoomed Image View';
         imageLightbox.style.display = 'flex';
       });
+    });
+  }
+
+  // Wrap Tables in Responsive Scroll Container
+  function enhanceTables() {
+    const tables = markdownBody.querySelectorAll('table');
+    tables.forEach(tbl => {
+      if (tbl.parentNode && !tbl.parentNode.classList.contains('table-wrapper')) {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'table-wrapper';
+        tbl.parentNode.insertBefore(wrapper, tbl);
+        wrapper.appendChild(tbl);
+      }
     });
   }
 
@@ -771,6 +792,22 @@
         logoImg.src = newMode === 'light' ? 'image/seeed_logo_c.svg' : 'image/seeed_logo_w.svg';
       }
     });
+
+    // Back to Top Floating Action Button Event Listeners
+    const backToTopBtn = document.getElementById('back-to-top-btn');
+    if (backToTopBtn) {
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+          backToTopBtn.classList.add('visible');
+        } else {
+          backToTopBtn.classList.remove('visible');
+        }
+      }, { passive: true });
+
+      backToTopBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
   }
 
   // ASCII Breathing Field Background Engine
