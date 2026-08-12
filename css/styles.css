@@ -799,6 +799,19 @@ canvas.ascii-bg {
   color: var(--nv-green);
   font-weight: 600;
   border-left: 3px solid var(--nv-green);
+  box-shadow: inset 3px 0 10px rgba(118, 185, 0, 0.2);
+  animation: activeGlowPulse 3s infinite ease-in-out;
+}
+
+@keyframes activeGlowPulse {
+  0%, 100% {
+    border-left-color: var(--nv-green);
+    box-shadow: inset 3px 0 8px rgba(118, 185, 0, 0.2);
+  }
+  50% {
+    border-left-color: #a6ff00;
+    box-shadow: inset 4px 0 14px rgba(118, 185, 0, 0.45);
+  }
 }
 
 /* Center Main Reader Content */
@@ -1476,26 +1489,44 @@ canvas.ascii-bg {
   white-space: nowrap;
 }
 
-/* Image Lightbox Modal */
+/* Image Lightbox Modal with Spring Scale & Backdrop Blur */
 #image-lightbox {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: rgba(0, 0, 0, 0.82);
+  backdrop-filter: blur(0px);
   z-index: 3000;
-  display: none;
+  display: flex;
+  opacity: 0;
+  visibility: hidden;
   align-items: center;
   justify-content: center;
   cursor: zoom-out;
+  transition: opacity 0.3s ease, visibility 0.3s ease, backdrop-filter 0.3s ease;
+}
+
+#image-lightbox.active {
+  opacity: 1;
+  visibility: visible;
+  backdrop-filter: blur(14px);
 }
 
 #image-lightbox img {
   max-width: 92vw;
   max-height: 92vh;
-  border-radius: 8px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.85);
+  transform: scale(0.88);
+  opacity: 0;
+  transition: transform 0.38s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
+}
+
+#image-lightbox.active img {
+  transform: scale(1);
+  opacity: 1;
 }
 
 /* Mobile Menu Button & TOC Button */
@@ -1641,7 +1672,7 @@ canvas.ascii-bg {
   }
 }
 
-/* Floating Back-to-Top Button */
+/* Floating Back-to-Top Button with Pulse Ring */
 .back-to-top-btn {
   position: fixed;
   bottom: 2rem;
@@ -1662,7 +1693,17 @@ canvas.ascii-bg {
   opacity: 0;
   visibility: hidden;
   transform: translateY(10px);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.back-to-top-btn::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2px solid var(--nv-green);
+  opacity: 0;
+  pointer-events: none;
 }
 
 .back-to-top-btn.visible {
@@ -1671,10 +1712,38 @@ canvas.ascii-bg {
   transform: translateY(0);
 }
 
+.back-to-top-btn.visible::after {
+  animation: btnPulseRing 2.2s infinite ease-out;
+}
+
+@keyframes btnPulseRing {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1.45);
+    opacity: 0;
+  }
+}
+
 .back-to-top-btn:hover {
   background: #8ce000;
-  transform: translateY(-3px) scale(1.05);
-  box-shadow: 0 6px 24px rgba(118, 185, 0, 0.6);
+  transform: translateY(-4px) scale(1.08);
+  box-shadow: 0 8px 28px rgba(118, 185, 0, 0.65);
+}
+
+/* Staggered Scroll-Reveal Animations */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.scroll-reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* Markdown Responsive Table Scrollbar Wrapper */

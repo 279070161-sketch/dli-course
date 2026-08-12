@@ -591,7 +591,7 @@
       img.addEventListener('click', () => {
         lightboxImg.src = img.src;
         lightboxImg.alt = img.alt || 'Zoomed Image View';
-        imageLightbox.style.display = 'flex';
+        imageLightbox.classList.add('active');
       });
     });
   }
@@ -852,11 +852,11 @@
       }
       if (e.key === 'Escape') {
         searchModal.style.display = 'none';
-        imageLightbox.style.display = 'none';
+        imageLightbox.classList.remove('active');
       }
 
       // Arrow keys (← / →) for Previous / Next lesson navigation in reader view
-      if (readerView.style.display !== 'none' && searchModal.style.display !== 'flex' && imageLightbox.style.display !== 'flex') {
+      if (readerView.style.display !== 'none' && searchModal.style.display !== 'flex' && !imageLightbox.classList.contains('active')) {
         const isEditing = ['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName) || document.activeElement.isContentEditable;
         if (!isEditing) {
           if (e.key === 'ArrowLeft') {
@@ -876,7 +876,7 @@
 
     // Close Image Lightbox
     imageLightbox.addEventListener('click', () => {
-      imageLightbox.style.display = 'none';
+      imageLightbox.classList.remove('active');
     });
 
     // Theme Switcher Toggle
@@ -1016,9 +1016,35 @@
     requestAnimationFrame(tick);
   }
 
+  // Staggered Scroll-Reveal Animations Engine
+  function initScrollReveal() {
+    const targets = document.querySelectorAll('.feature-card, .chapter-block, .section-title');
+    targets.forEach(el => {
+      el.classList.add('scroll-reveal');
+    });
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, idx) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => {
+              entry.target.classList.add('revealed');
+            }, (idx % 3) * 60);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+
+      targets.forEach(el => observer.observe(el));
+    } else {
+      targets.forEach(el => el.classList.add('revealed'));
+    }
+  }
+
   // Run on DOM Ready
   document.addEventListener('DOMContentLoaded', () => {
     init();
     initAsciiBg();
+    initScrollReveal();
   });
 })();
