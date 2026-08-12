@@ -1672,65 +1672,44 @@ canvas.ascii-bg {
   }
 }
 
-/* Floating Back-to-Top Button with Pulse Ring */
+/* Floating Back-to-Top Button (Low-key & Translucent Glassmorphism) */
 .back-to-top-btn {
   position: fixed;
   bottom: 2rem;
   right: 2rem;
-  width: 44px;
-  height: 44px;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
-  background: var(--nv-green);
-  color: #000000;
-  border: none;
-  font-size: 1.1rem;
+  background: rgba(25, 30, 35, 0.75);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--nv-border);
+  color: var(--text-secondary);
+  font-size: 0.9rem;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   z-index: 250;
-  box-shadow: 0 4px 20px rgba(118, 185, 0, 0.4);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
   opacity: 0;
   visibility: hidden;
-  transform: translateY(10px);
-  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.back-to-top-btn::after {
-  content: '';
-  position: absolute;
-  inset: -4px;
-  border-radius: 50%;
-  border: 2px solid var(--nv-green);
-  opacity: 0;
-  pointer-events: none;
+  transform: translateY(8px);
+  transition: opacity 0.25s ease, visibility 0.25s ease, transform 0.25s ease, background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
 
 .back-to-top-btn.visible {
-  opacity: 1;
+  opacity: 0.75;
   visibility: visible;
   transform: translateY(0);
 }
 
-.back-to-top-btn.visible::after {
-  animation: btnPulseRing 2.2s infinite ease-out;
-}
-
-@keyframes btnPulseRing {
-  0% {
-    transform: scale(0.95);
-    opacity: 0.8;
-  }
-  100% {
-    transform: scale(1.45);
-    opacity: 0;
-  }
-}
-
 .back-to-top-btn:hover {
-  background: #8ce000;
-  transform: translateY(-4px) scale(1.08);
-  box-shadow: 0 8px 28px rgba(118, 185, 0, 0.65);
+  opacity: 1;
+  background: var(--nv-surface-3);
+  color: var(--nv-green);
+  border-color: rgba(118, 185, 0, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4), 0 0 10px rgba(118, 185, 0, 0.15);
 }
 
 /* Staggered Scroll-Reveal Animations */
