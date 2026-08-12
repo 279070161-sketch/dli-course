@@ -687,6 +687,27 @@
         h.scrollIntoView({ behavior: 'smooth' });
       });
     });
+
+    // Active Scroll Sync for TOC Items (Spring Active Indicator)
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const activeId = entry.target.id;
+            const links = tocList.querySelectorAll('.toc-link');
+            links.forEach(link => {
+              if (link.getAttribute('href') === `#${activeId}`) {
+                link.classList.add('active');
+              } else {
+                link.classList.remove('active');
+              }
+            });
+          }
+        });
+      }, { rootMargin: '-64px 0px -65% 0px', threshold: 0.1 });
+
+      headings.forEach(h => observer.observe(h));
+    }
   }
 
   // Update Pagination Controls
