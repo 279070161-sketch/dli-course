@@ -132,8 +132,41 @@
       chaptersGrid.appendChild(chapterBlock);
     });
 
-    // Add click listeners to cards
+    // Add click & 3D magnetic tilt + spotlight follow listeners to cards
     document.querySelectorAll('.lesson-item-card').forEach(card => {
+      // Inject spotlight overlay element
+      if (!card.querySelector('.card-spotlight')) {
+        const spotlight = document.createElement('div');
+        spotlight.className = 'card-spotlight';
+        card.appendChild(spotlight);
+      }
+
+      const spotlight = card.querySelector('.card-spotlight');
+
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        // Update spotlight position
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+        if (spotlight) spotlight.style.opacity = '1';
+
+        // Calculate 3D tilt angles (max +/- 7 deg)
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = (-(y - centerY) / centerY * 7).toFixed(2);
+        const rotateY = ((x - centerX) / centerX * 7).toFixed(2);
+
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+        if (spotlight) spotlight.style.opacity = '0';
+      });
+
       card.addEventListener('click', () => {
         const id = card.getAttribute('data-lesson-id');
         const idx = lessons.findIndex(l => l.id === id);
