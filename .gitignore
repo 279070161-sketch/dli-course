@@ -1,1 +1,3 @@
-video/
+# Ignore temp logs and OS files
+*.log
+.DS_Store

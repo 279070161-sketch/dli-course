@@ -232,6 +232,9 @@
     // Post-process Images for Lightbox Zoom
     enhanceImages();
 
+    // Post-process Videos for relative path resolution
+    enhanceVideos();
+
     // Post-process Task Lists (Interactive checkboxes & strikethrough)
     enhanceTaskLists();
 
@@ -553,6 +556,30 @@
         lightboxImg.alt = img.alt || 'Zoomed Image View';
         imageLightbox.style.display = 'flex';
       });
+    });
+  }
+
+  // Enhance Videos with relative path correction & auto-reload
+  function enhanceVideos() {
+    const videos = markdownBody.querySelectorAll('video');
+    videos.forEach(v => {
+      let updated = false;
+      const sources = v.querySelectorAll('source');
+      sources.forEach(src => {
+        let s = src.getAttribute('src') || '';
+        if (s.startsWith('../video/')) {
+          s = s.replace('../video/', 'video/');
+          src.src = s;
+          updated = true;
+        } else if (s.startsWith('/video/')) {
+          s = s.replace('/video/', 'video/');
+          src.src = s;
+          updated = true;
+        }
+      });
+      if (updated) {
+        v.load();
+      }
     });
   }
 
