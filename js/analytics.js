@@ -7,7 +7,7 @@
   // CONFIGURATION PLACEHOLDER
   // Paste your Measurement ID here when available (e.g., 'G-XXXXXXXXXX')
   // =========================================================================
-  window.GA_MEASUREMENT_ID = '';
+  window.GA_MEASUREMENT_ID = 'G-FFYEYPJWDC';
 
   // GA4 Auto Loader
   if (window.GA_MEASUREMENT_ID && window.GA_MEASUREMENT_ID.trim() !== '') {
