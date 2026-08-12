@@ -31,11 +31,72 @@
     breaks: true
   });
 
+  // i18n Multi-Language State & Manager
+  let currentLang = localStorage.getItem('dli_lang') || 'en';
+
+  function updateUILanguage() {
+    if (!window.I18N_DICT) return;
+    const dict = window.I18N_DICT[currentLang] || window.I18N_DICT.en;
+    if (!dict) return;
+
+    // Update Language Badge
+    const langBadge = document.getElementById('lang-badge');
+    if (langBadge) {
+      langBadge.textContent = currentLang === 'en' ? 'EN' : '中';
+    }
+
+    // Header & Search
+    const brandSub = document.querySelector('.brand-subtitle');
+    if (brandSub) brandSub.textContent = dict.brandSubtitle;
+
+    const searchFull = document.querySelector('.search-text-full');
+    if (searchFull) searchFull.innerHTML = `<i class="fas fa-search" style="margin-right: 0.5rem; color: var(--nv-green);"></i> ${dict.searchFull}`;
+
+    if (searchInput) searchInput.placeholder = dict.searchModalPlaceholder;
+
+    // Hero Section
+    const badgeTag = document.querySelector('.badge-tag');
+    if (badgeTag) badgeTag.innerHTML = `<i class="fas fa-bolt"></i> ${dict.heroBadge}`;
+
+    const heroTitle = document.querySelector('.hero-title');
+    if (heroTitle) {
+      heroTitle.innerHTML = `Physical AI & <span class="highlight-text">VLA Model</span> Course`;
+      if (currentLang === 'zh') {
+        heroTitle.innerHTML = `具身智能与 <span class="highlight-text">VLA 大模型</span> 实战课程`;
+      }
+    }
+
+    const heroSub = document.querySelector('.hero-subtitle');
+    if (heroSub) heroSub.textContent = dict.heroSub;
+
+    const startBtn = document.getElementById('hero-start-btn');
+    if (startBtn) startBtn.innerHTML = `<i class="fas fa-play" style="margin-right: 0.5rem; font-size: 0.85rem;"></i> ${dict.heroStartBtn}`;
+
+    const exploreBtn = document.getElementById('hero-explore-btn');
+    if (exploreBtn) exploreBtn.textContent = dict.heroExploreBtn;
+
+    // Overview & Chapters Section Titles
+    const secTitles = document.querySelectorAll('.section-title');
+    const secSubs = document.querySelectorAll('.section-sub');
+    if (secTitles[0]) secTitles[0].innerHTML = `<i class="fas fa-microchip"></i> ${dict.overviewTitle}`;
+    if (secSubs[0]) secSubs[0].textContent = dict.overviewSub;
+    if (secTitles[1]) secTitles[1].innerHTML = `<i class="fas fa-layer-group"></i> ${dict.chaptersTitle}`;
+    if (secSubs[1]) secSubs[1].textContent = dict.chaptersSub;
+
+    // Back to Overview Button & Right Sidebar TOC
+    const backBtn = document.getElementById('back-to-overview');
+    if (backBtn) backBtn.innerHTML = `<i class="fas fa-arrow-left"></i> ${dict.backToOverview}`;
+
+    const tocTitle = document.querySelector('.toc-title');
+    if (tocTitle) tocTitle.textContent = dict.onThisPage;
+  }
+
   // Initialize
   function init() {
     renderLandingChapters();
     renderSidebarNav();
     setupEventListeners();
+    updateUILanguage();
     
     // Check URL hash for direct deep linking (e.g. #lesson-3.3)
     handleHashNavigation();
@@ -905,6 +966,19 @@
     imageLightbox.addEventListener('click', () => {
       imageLightbox.classList.remove('active');
     });
+
+    // Language Switcher Toggle (EN / ZH)
+    const langSwitchBtn = document.getElementById('lang-switch-btn');
+    if (langSwitchBtn) {
+      langSwitchBtn.addEventListener('click', () => {
+        currentLang = currentLang === 'en' ? 'zh' : 'en';
+        localStorage.setItem('dli_lang', currentLang);
+        updateUILanguage();
+        if (window.trackEvent) {
+          window.trackEvent('toggle_language', { lang: currentLang });
+        }
+      });
+    }
 
     // Theme Switcher Toggle
     themeToggleBtn.addEventListener('click', () => {
