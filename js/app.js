@@ -334,7 +334,7 @@
       // Left Header: Collapse Toggle
       const headerLeft = document.createElement('div');
       headerLeft.className = 'feishu-code-header-left';
-      headerLeft.innerHTML = `<i class="fas fa-caret-down feishu-caret"></i><span>代码块</span>`;
+      headerLeft.innerHTML = `<i class="fas fa-caret-down feishu-caret"></i><span>Code Block</span>`;
       headerLeft.addEventListener('click', () => {
         block.classList.toggle('collapsed');
       });
@@ -372,7 +372,7 @@
         const searchInput = document.createElement('input');
         searchInput.type = 'text';
         searchInput.className = 'feishu-lang-search';
-        searchInput.placeholder = '搜索 语言...';
+        searchInput.placeholder = 'Search language...';
 
         searchWrap.appendChild(searchInput);
 
@@ -385,7 +385,7 @@
           const filtered = LANG_LIST.filter(l => l.toLowerCase().includes(filter.toLowerCase()));
 
           if (filtered.length === 0) {
-            langUl.innerHTML = '<li style="padding: 0.5rem; text-align: center; color: var(--feishu-line-num); font-size: 0.8rem;">无匹配语言</li>';
+            langUl.innerHTML = '<li style="padding: 0.5rem; text-align: center; color: var(--feishu-line-num); font-size: 0.8rem;">No matching language</li>';
             return;
           }
 
@@ -459,8 +459,8 @@
       // Word Wrap Button
       const wrapBtn = document.createElement('button');
       wrapBtn.className = 'feishu-action-btn wrap-btn';
-      wrapBtn.innerHTML = `<i class="fas fa-level-down-alt fa-rotate-90"></i><span>自动换行</span>`;
-      wrapBtn.title = '切换自动换行';
+      wrapBtn.innerHTML = `<i class="fas fa-level-down-alt fa-rotate-90"></i><span>Wrap</span>`;
+      wrapBtn.title = 'Toggle word wrap';
       wrapBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         pre.classList.toggle('word-wrap');
@@ -470,17 +470,17 @@
       // Copy Button
       const copyBtn = document.createElement('button');
       copyBtn.className = 'feishu-action-btn copy-btn';
-      copyBtn.innerHTML = `<i class="far fa-copy"></i><span>复制</span>`;
-      copyBtn.title = '复制代码';
+      copyBtn.innerHTML = `<i class="far fa-copy"></i><span>Copy</span>`;
+      copyBtn.title = 'Copy code';
       copyBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         navigator.clipboard.writeText(rawText).then(() => {
-          copyBtn.innerHTML = `<i class="fas fa-check" style="color:var(--nv-green)"></i><span style="color:var(--nv-green)">已复制</span>`;
+          copyBtn.innerHTML = `<i class="fas fa-check" style="color:var(--nv-green)"></i><span style="color:var(--nv-green)">Copied</span>`;
           if (window.trackEvent) {
             window.trackEvent('copy_code_snippet', { language: lang });
           }
           setTimeout(() => {
-            copyBtn.innerHTML = `<i class="far fa-copy"></i><span>复制</span>`;
+            copyBtn.innerHTML = `<i class="far fa-copy"></i><span>Copy</span>`;
           }, 2000);
         });
       });
