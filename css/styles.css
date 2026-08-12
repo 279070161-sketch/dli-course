@@ -1323,6 +1323,7 @@ canvas.ascii-bg {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 1rem;
 }
 
 .pag-btn {
@@ -1334,7 +1335,19 @@ canvas.ascii-bg {
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.2s ease;
-  min-width: 180px;
+  min-width: 200px;
+  max-width: 48%;
+}
+
+.pag-btn.prev-btn {
+  align-items: flex-start;
+  text-align: left;
+}
+
+.pag-btn.next-btn {
+  align-items: flex-end;
+  text-align: right;
+  margin-left: auto;
 }
 
 .pag-btn:hover {
