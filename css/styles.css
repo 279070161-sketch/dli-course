@@ -362,18 +362,6 @@ a:hover {
   background-color: var(--nv-surface-2);
 }
 
-.lang-switch-btn {
-  font-weight: 800;
-  font-size: 0.8rem;
-  letter-spacing: 0.5px;
-  color: var(--nv-green);
-  border-color: rgba(118, 185, 0, 0.4);
-}
-
-.lang-switch-btn:hover {
-  background-color: rgba(118, 185, 0, 0.15);
-}
-
 /* ==========================================================================
    Landing Page View
    ========================================================================== */
