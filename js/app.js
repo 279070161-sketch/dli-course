@@ -467,14 +467,18 @@
         wrapBtn.classList.toggle('active');
       });
 
-      // Copy Button
+      // Copy Button (With Automatic Shell Prompt Stripper)
       const copyBtn = document.createElement('button');
       copyBtn.className = 'feishu-action-btn copy-btn';
       copyBtn.innerHTML = `<i class="far fa-copy"></i><span>Copy</span>`;
       copyBtn.title = 'Copy code';
       copyBtn.addEventListener('click', (e) => {
         e.stopPropagation();
-        navigator.clipboard.writeText(rawText).then(() => {
+        
+        // Strip shell prompts (e.g. '$ ', '(.venv)...$ ', '# ') for clean terminal execution
+        const cleanText = rawText.replace(/^[\s]*(\$|\#|\(.+?\)[\w@\-~\:\s]*[\$#])\s+/gm, '');
+
+        navigator.clipboard.writeText(cleanText).then(() => {
           copyBtn.innerHTML = `<i class="fas fa-check" style="color:var(--nv-green)"></i><span style="color:var(--nv-green)">Copied</span>`;
           if (window.trackEvent) {
             window.trackEvent('copy_code_snippet', { language: lang });
@@ -874,6 +878,52 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
       });
     }
+
+    // Font Size Adjuster Control (Normal / Medium / Large)
+    const fontSizeBtn = document.getElementById('font-size-btn');
+    const FONT_CLASSES = ['', 'font-size-md', 'font-size-lg'];
+    let currentFontIdx = parseInt(localStorage.getItem('dli_font_size_idx') || '0', 10);
+
+    function applyFontSize() {
+      const idx = currentFontIdx % FONT_CLASSES.length;
+      markdownBody.classList.remove('font-size-md', 'font-size-lg');
+      if (FONT_CLASSES[idx]) {
+        markdownBody.classList.add(FONT_CLASSES[idx]);
+      }
+      if (fontSizeBtn) {
+        const labels = ['Normal', 'Medium', 'Large'];
+        fontSizeBtn.title = `Font Size: ${labels[idx]}`;
+      }
+    }
+
+    if (fontSizeBtn) {
+      fontSizeBtn.addEventListener('click', () => {
+        currentFontIdx = (currentFontIdx + 1) % FONT_CLASSES.length;
+        localStorage.setItem('dli_font_size_idx', currentFontIdx);
+        applyFontSize();
+      });
+    }
+    applyFontSize();
+
+    // Top Glowing Reading Progress Bar Listener
+    const progressBar = document.getElementById('reading-progress-bar');
+    function updateReadingProgress() {
+      if (!progressBar) return;
+      if (readerView.style.display === 'none') {
+        progressBar.style.width = '0%';
+        return;
+      }
+      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+      if (totalHeight <= 0) {
+        progressBar.style.width = '100%';
+        return;
+      }
+      const currentScroll = window.scrollY;
+      const percentage = Math.min(100, Math.max(0, (currentScroll / totalHeight) * 100));
+      progressBar.style.width = `${percentage}%`;
+    }
+
+    window.addEventListener('scroll', updateReadingProgress, { passive: true });
   }
 
   // ASCII Breathing Field Background Engine

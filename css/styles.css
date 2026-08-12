@@ -1676,3 +1676,36 @@ canvas.ascii-bg {
   border-color: var(--nv-green) !important;
 }
 
+/* Glowing Top Reading Progress Bar */
+.reading-progress-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--nv-green), #a6ff00);
+  box-shadow: 0 0 10px rgba(118, 185, 0, 0.8);
+  transition: width 0.15s ease-out;
+  z-index: 105;
+}
+
+/* Font Size Scaling Options */
+.markdown-body.font-size-md {
+  font-size: 1.15rem !important;
+}
+
+.markdown-body.font-size-md p,
+.markdown-body.font-size-md li {
+  line-height: 1.8;
+}
+
+.markdown-body.font-size-lg {
+  font-size: 1.28rem !important;
+}
+
+.markdown-body.font-size-lg p,
+.markdown-body.font-size-lg li {
+  line-height: 1.85;
+}
+
+
