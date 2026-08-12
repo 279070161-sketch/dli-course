@@ -1327,25 +1327,25 @@ canvas.ascii-bg {
 }
 
 .pag-btn {
-  display: flex;
-  flex-direction: column;
+  display: inline-flex;
+  align-items: center;
   padding: 0.75rem 1.25rem;
   background-color: var(--nv-surface-1);
   border: 1px solid var(--nv-border);
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.2s ease;
-  min-width: 200px;
+  min-width: 160px;
   max-width: 48%;
 }
 
 .pag-btn.prev-btn {
-  align-items: flex-start;
+  justify-content: flex-start;
   text-align: left;
 }
 
 .pag-btn.next-btn {
-  align-items: flex-end;
+  justify-content: flex-end;
   text-align: right;
   margin-left: auto;
 }
@@ -1355,16 +1355,26 @@ canvas.ascii-bg {
   background-color: var(--nv-surface-2);
 }
 
-.pag-label {
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  text-transform: uppercase;
-}
-
 .pag-title {
   font-size: 0.95rem;
   font-weight: 600;
   color: var(--text-primary);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.pag-title i {
+  color: var(--nv-green);
+  transition: transform 0.2s ease;
+}
+
+.pag-btn.prev-btn:hover .pag-title i {
+  transform: translateX(-3px);
+}
+
+.pag-btn.next-btn:hover .pag-title i {
+  transform: translateX(3px);
 }
 
 /* Right Sidebar (On This Page TOC) */

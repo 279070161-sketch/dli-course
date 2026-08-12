@@ -669,7 +669,8 @@
     if (currentLessonIndex > 0) {
       const prevLesson = lessons[currentLessonIndex - 1];
       prevLessonBtn.style.visibility = 'visible';
-      prevLessonBtn.querySelector('.pag-title').textContent = prevLesson.title;
+      const prevTitleEl = prevLessonBtn.querySelector('.title-text') || prevLessonBtn.querySelector('.pag-title');
+      if (prevTitleEl) prevTitleEl.textContent = prevLesson.title;
     } else {
       prevLessonBtn.style.visibility = 'hidden';
     }
@@ -677,7 +678,8 @@
     if (currentLessonIndex < lessons.length - 1) {
       const nextLesson = lessons[currentLessonIndex + 1];
       nextLessonBtn.style.visibility = 'visible';
-      nextLessonBtn.querySelector('.pag-title').textContent = nextLesson.title;
+      const nextTitleEl = nextLessonBtn.querySelector('.title-text') || nextLessonBtn.querySelector('.pag-title');
+      if (nextTitleEl) nextTitleEl.textContent = nextLesson.title;
     } else {
       nextLessonBtn.style.visibility = 'hidden';
     }
