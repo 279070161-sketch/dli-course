@@ -1768,8 +1768,190 @@ canvas.ascii-bg {
   transition: opacity 0.3s ease, transform 0.2s ease;
 }
 
-.markdown-body img:hover {
-  transform: scale(1.008);
+/* Reading Metrics Badge (Reading Time & Word Count) */
+.reading-metrics-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: -0.5rem;
+  margin-bottom: 1.75rem;
+  padding: 0.3rem 0.8rem;
+  background-color: var(--nv-surface-2);
+  border: 1px solid var(--nv-border);
+  border-radius: 20px;
+  font-weight: 500;
+}
+
+.reading-metrics-tag .metric-item {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.reading-metrics-tag .metric-item i {
+  color: var(--nv-green);
+  font-size: 0.8rem;
+}
+
+.reading-metrics-tag .metric-divider {
+  opacity: 0.4;
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   Modern PDF Export & Print Stylesheet (@media print)
+   ========================================================================== */
+@media print {
+  /* Hide Non-Essential UI Components */
+  header,
+  .dli-header,
+  .sidebar-nav,
+  .toc-nav,
+  .search-trigger-btn,
+  .back-to-top-btn,
+  .reader-pagination,
+  .mobile-menu-btn,
+  .modal-overlay,
+  #image-lightbox,
+  .reading-progress-bar,
+  #landing-view {
+    display: none !important;
+  }
+
+  /* Reset Layout & Backgrounds for High-Contrast Paper Printing */
+  body,
+  html,
+  #app,
+  .app-container,
+  .reader-container,
+  .main-reader,
+  .markdown-body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    max-width: 100% !important;
+    box-shadow: none !important;
+  }
+
+  .main-reader {
+    width: 100% !important;
+  }
+
+  .markdown-body {
+    font-size: 11pt !important;
+    line-height: 1.6 !important;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  }
+
+  /* Print Headers & Borders */
+  .markdown-body h1 {
+    font-size: 20pt !important;
+    color: #000000 !important;
+    border-bottom: 2px solid #333333 !important;
+    page-break-after: avoid;
+  }
+
+  .markdown-body h2 {
+    font-size: 15pt !important;
+    color: #111111 !important;
+    border-bottom: 1px solid #cccccc !important;
+    page-break-after: avoid;
+    margin-top: 1.5rem !important;
+  }
+
+  .markdown-body h3 {
+    font-size: 12pt !important;
+    color: #222222 !important;
+    page-break-after: avoid;
+  }
+
+  /* Print Callout Boxes */
+  .callout-box {
+    background-color: #f8f9fa !important;
+    border-left: 4px solid #333333 !important;
+    color: #111111 !important;
+    page-break-inside: avoid;
+  }
+
+  /* Print Feishu Code Blocks */
+  .feishu-code-block {
+    background-color: #f8f9fa !important;
+    border: 1px solid #cccccc !important;
+    border-radius: 6px !important;
+    page-break-inside: avoid;
+    margin: 1.2rem 0 !important;
+  }
+
+  .feishu-code-header {
+    background-color: #e9ecef !important;
+    border-bottom: 1px solid #cccccc !important;
+    color: #333333 !important;
+  }
+
+  .feishu-code-header-left span,
+  .feishu-lang-tag {
+    color: #333333 !important;
+  }
+
+  .feishu-action-btn,
+  .feishu-divider {
+    display: none !important;
+  }
+
+  .feishu-line-num {
+    color: #888888 !important;
+    border-right: 1px solid #dddddd !important;
+    background-color: #f1f3f5 !important;
+  }
+
+  .feishu-code-content pre code {
+    color: #111111 !important;
+    font-family: "Courier New", Courier, monospace !important;
+    font-size: 9.5pt !important;
+    white-space: pre-wrap !important;
+    word-break: break-all !important;
+  }
+
+  /* Print Images & Diagrams */
+  .markdown-body img {
+    max-width: 85% !important;
+    height: auto !important;
+    margin: 1rem auto !important;
+    border: 1px solid #dddddd !important;
+    page-break-inside: avoid;
+  }
+
+  /* Print Tables */
+  .markdown-body table {
+    border-collapse: collapse !important;
+    width: 100% !important;
+    page-break-inside: avoid;
+  }
+
+  .markdown-body th,
+  .markdown-body td {
+    border: 1px solid #cccccc !important;
+    padding: 6px 10px !important;
+    color: #000000 !important;
+  }
+
+  .markdown-body th {
+    background-color: #f1f3f5 !important;
+  }
+
+  /* Reading Metrics Badge Print Style */
+  .reading-metrics-tag {
+    background-color: #f1f3f5 !important;
+    border: 1px solid #cccccc !important;
+    color: #555555 !important;
+  }
+
+  .reading-metrics-tag .metric-item i {
+    color: #333333 !important;
+  }
 }
 
 /* Copy Code Button Toast/Tooltip */

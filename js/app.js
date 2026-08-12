@@ -235,6 +235,16 @@
     });
   }
 
+  // Calculate Word Count and Estimated Reading Time
+  function calculateReadingMetrics(text) {
+    if (!text) return { words: 0, minutes: 1 };
+    const cleanText = text.replace(/```[\s\S]*?```/g, '').replace(/<[^>]+>/g, '');
+    const tokens = cleanText.match(/[\u4e00-\u9fa5]|\w+/g) || [];
+    const words = tokens.length;
+    const minutes = Math.max(1, Math.ceil(words / 220));
+    return { words, minutes };
+  }
+
   // Render Markdown Content & Custom Blocks
   function renderMarkdownContent(lesson) {
     let rawMd = lesson.content;
@@ -254,10 +264,25 @@
       </div>\n`;
     });
 
+    // Calculate & Inject Reading Metrics Badge below Title
+    const { words, minutes } = calculateReadingMetrics(rawMd);
+    const metricsHtml = `
+      <div class="reading-metrics-tag">
+        <span class="metric-item"><i class="far fa-clock"></i> ${minutes} min read</span>
+        <span class="metric-divider">•</span>
+        <span class="metric-item"><i class="far fa-file-alt"></i> ${words.toLocaleString()} words</span>
+      </div>`;
+
     // Parse Markdown to HTML
     let html = marked.parse(rawMd);
 
     markdownBody.innerHTML = html;
+
+    // Inject metrics badge right after h1
+    const h1 = markdownBody.querySelector('h1');
+    if (h1) {
+      h1.insertAdjacentHTML('afterend', metricsHtml);
+    }
 
     // Post-process Code Blocks with Copy Button
     enhanceCodeBlocks();
@@ -880,6 +905,17 @@
     imageLightbox.addEventListener('click', () => {
       imageLightbox.classList.remove('active');
     });
+
+    // Print / Export PDF Action
+    const printBtn = document.getElementById('print-btn');
+    if (printBtn) {
+      printBtn.addEventListener('click', () => {
+        if (window.trackEvent) {
+          window.trackEvent('export_pdf_print');
+        }
+        window.print();
+      });
+    }
 
     // Theme Switcher Toggle
     themeToggleBtn.addEventListener('click', () => {
