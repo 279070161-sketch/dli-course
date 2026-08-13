@@ -96,6 +96,7 @@
 
   // Render Landing Page Chapters Grid
   function renderLandingChapters() {
+    if (!chaptersGrid) return;
     const chapters = groupLessonsByChapter();
     chaptersGrid.innerHTML = '';
 
@@ -870,15 +871,22 @@
     });
 
     // Hero CTA Buttons
-    document.getElementById('hero-start-btn').addEventListener('click', () => {
-      if (window.trackEvent) {
-        window.trackEvent('click_start_learning', { location: 'hero' });
-      }
-      showReaderView(0);
-    });
-    document.getElementById('hero-explore-btn').addEventListener('click', () => {
-      document.getElementById('chapters-section').scrollIntoView({ behavior: 'smooth' });
-    });
+    const heroStartBtn = document.getElementById('hero-start-btn');
+    if (heroStartBtn) {
+      heroStartBtn.addEventListener('click', () => {
+        if (window.trackEvent) {
+          window.trackEvent('click_start_learning', { location: 'hero' });
+        }
+        showReaderView(0);
+      });
+    }
+    const heroExploreBtn = document.getElementById('hero-explore-btn');
+    if (heroExploreBtn) {
+      heroExploreBtn.addEventListener('click', () => {
+        const chaptersSec = document.getElementById('chapters-section');
+        if (chaptersSec) chaptersSec.scrollIntoView({ behavior: 'smooth' });
+      });
+    }
 
     // Pagination Click
     prevLessonBtn.addEventListener('click', () => {
