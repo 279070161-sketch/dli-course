@@ -550,7 +550,7 @@ canvas.ascii-bg {
   top: 0;
   right: 0;
   bottom: 0;
-  width: 60%;
+  width: 55%;
   height: 100%;
   pointer-events: none;
   z-index: 1;
@@ -575,8 +575,6 @@ canvas.ascii-bg {
   object-fit: cover;
   object-position: right center;
   display: block;
-  mask-image: linear-gradient(to right, transparent 0%, black 25%);
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 25%);
 }
 
 @media (max-width: 992px) {
