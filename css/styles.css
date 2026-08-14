@@ -438,11 +438,12 @@ canvas.ascii-bg {
 
 .hero-bg-overlay {
   position: absolute;
-  inset: 0;
-  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
   height: 100%;
-  object-fit: cover;
-  object-position: right center;
+  width: auto;
+  max-width: none;
   pointer-events: none;
   z-index: 1;
 }
