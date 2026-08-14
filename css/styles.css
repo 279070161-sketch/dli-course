@@ -416,14 +416,14 @@ a:hover {
 
 .hero-section {
   position: relative;
-  padding: 4rem 2rem 5rem;
+  padding: 0;
   background: radial-gradient(circle at 80% 50%, rgba(141, 195, 31, 0.12) 0%, rgba(13, 16, 18, 0) 70%),
               linear-gradient(180deg, #121619 0%, #0d1012 100%);
   border-bottom: 1px solid var(--nv-border);
   overflow: hidden;
   min-height: 520px;
   display: flex;
-  align-items: center;
+  align-items: stretch;
 }
 
 canvas.ascii-bg {
@@ -442,21 +442,23 @@ canvas.ascii-bg {
 }
 
 .hero-container {
-  max-width: 1240px;
+  max-width: 1360px;
   width: 100%;
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1.15fr 1fr;
   gap: 2.5rem;
-  align-items: center;
+  align-items: stretch;
   position: relative;
   z-index: 1;
 }
 
 .hero-left-col {
+  padding: 4.5rem 1.5rem 4.5rem 2rem;
   text-align: left;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: flex-start;
 }
 
@@ -543,26 +545,29 @@ canvas.ascii-bg {
 
 .hero-right-col {
   position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  align-items: stretch;
+  justify-content: flex-end;
 }
 
 .hero-img-wrapper {
   position: relative;
   width: 100%;
-  max-width: 640px;
-  border-radius: 12px;
+  height: 100%;
   overflow: hidden;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
 }
 
 .hero-banner-img {
   width: 100%;
-  height: auto;
-  display: block;
+  height: 100%;
   object-fit: cover;
-  border-radius: 12px;
+  object-position: center right;
+  display: block;
 }
 
 @media (max-width: 992px) {
