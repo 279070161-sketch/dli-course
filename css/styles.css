@@ -557,17 +557,25 @@ canvas.ascii-bg {
 
 @media (max-width: 992px) {
   .hero-container {
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
+    justify-content: center;
   }
   .hero-left-col {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 3rem 1rem;
     align-items: center;
+    text-align: center;
+  }
+  .hero-title {
     text-align: center;
   }
   .hero-desc {
     text-align: center;
+    margin-left: auto;
+    margin-right: auto;
   }
   .hero-stats-grid {
+    width: 100%;
     justify-content: center;
     gap: 1.5rem 2rem;
   }
@@ -576,6 +584,7 @@ canvas.ascii-bg {
     text-align: center;
   }
   .cta-group {
+    width: 100%;
     justify-content: center;
   }
 }
