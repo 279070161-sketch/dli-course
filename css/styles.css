@@ -453,9 +453,10 @@ canvas.ascii-bg {
   right: 0;
   bottom: 0;
   height: 100%;
+  min-height: 100%;
   width: auto;
-  max-width: 100%;
-  object-fit: contain;
+  max-width: none;
+  object-fit: cover;
   object-position: right center;
   pointer-events: none;
   z-index: 1;
