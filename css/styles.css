@@ -421,9 +421,9 @@ a:hover {
               linear-gradient(180deg, #121619 0%, #0d1012 100%);
   border-bottom: 1px solid var(--nv-border);
   overflow: hidden;
-  min-height: 520px;
+  min-height: 540px;
   display: flex;
-  align-items: center;
+  align-items: stretch;
 }
 
 canvas.ascii-bg {
@@ -439,7 +439,7 @@ canvas.ascii-bg {
 .hero-container {
   max-width: 1360px;
   width: 100%;
-  min-height: 520px;
+  min-height: 540px;
   margin: 0 auto;
   position: relative;
   z-index: 2;
@@ -453,11 +453,7 @@ canvas.ascii-bg {
   right: 0;
   bottom: 0;
   height: 100%;
-  min-height: 100%;
   width: auto;
-  max-width: none;
-  object-fit: cover;
-  object-position: right center;
   pointer-events: none;
   z-index: 1;
 }
