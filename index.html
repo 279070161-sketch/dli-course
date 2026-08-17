@@ -4,21 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Seeed reBot Arm B601-RS: Physical AI & VLA Model Course | NVIDIA DLI Series</title>
-  <meta name="description" content="Master Physical AI, Sim-to-Real, Cosmos Transfer Data Augmentation, and Isaac GR00T N1.7 TensorRT deployment on Jetson AGX Thor and Orin with reBot Arm B601-RS.">
-  <meta name="keywords" content="Physical AI, NVIDIA Isaac, GR00T N1.7, VLA Model, Jetson Thor, Jetson Orin, Sim-to-Real, Seeed Studio, reBot Arm, LeRobot, TensorRT">
+  <meta name="description" content="Master Physical AI, Sim-to-Real, Cosmos Transfer Data Augmentation, and Isaac GR00T 1.7 TensorRT deployment on Jetson AGX Thor and Orin with reBot Arm B601-RS.">
+  <meta name="keywords" content="Physical AI, NVIDIA Isaac, GR00T 1.7, VLA Model, Jetson Thor, Jetson Orin, Sim-to-Real, Seeed Studio, reBot Arm, LeRobot, TensorRT">
   <meta name="author" content="Seeed Studio & NVIDIA DLI">
   <meta name="theme-color" content="#101014">
 
   <!-- Open Graph / Facebook Meta Tags -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Seeed reBot Arm B601-RS: Physical AI & VLA Model Course | NVIDIA DLI Series">
-  <meta property="og:description" content="An end-to-end hands-on curriculum covering LeRobot teleoperation, Isaac Sim digital twin, Cosmos Transfer video augmentation, Isaac GR00T N1.7 VLA model fine-tuning, and Jetson TensorRT 7-engine deployment.">
+  <meta property="og:description" content="An end-to-end hands-on curriculum covering LeRobot teleoperation, Isaac Sim digital twin, Cosmos Transfer video augmentation, Isaac GR00T 1.7 VLA model fine-tuning, and Jetson TensorRT 7-engine deployment.">
   <meta property="og:image" content="image/seeed_logo_c.svg">
 
   <!-- Twitter Meta Tags -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Seeed reBot Arm B601-RS: Physical AI & VLA Model Course">
-  <meta name="twitter:description" content="Master Physical AI, Sim-to-Real, Cosmos Transfer Data Augmentation, and Isaac GR00T N1.7 TensorRT deployment on Jetson AGX Thor and Orin.">
+  <meta name="twitter:description" content="Master Physical AI, Sim-to-Real, Cosmos Transfer Data Augmentation, and Isaac GR00T 1.7 TensorRT deployment on Jetson AGX Thor and Orin.">
   <meta name="twitter:image" content="image/seeed_logo_c.svg">
 
   <!-- Google Fonts & Icons -->
@@ -53,8 +53,8 @@
       </button>
       <img src="image/seeed_logo_w.svg" alt="Seeed Studio Logo" class="brand-logo-img">
       <div class="brand-title">
-        <span>DLI Course</span>
-        <span class="brand-subtitle">| Seeed reBot Arm</span>
+        <span>A Sim-to-Real VLA Pipeline with Seeed reBot Arm and NVIDIA Isaac</span>
+        <span class="brand-subtitle">| reBot Arm B601</span>
       </div>
     </div>
 
@@ -138,27 +138,49 @@
 
         <div class="overview-grid">
           <div class="feature-card">
-            <div class="feature-icon"><i class="fas fa-hand-holding"></i></div>
-            <h3>1. Real & Sim Data Collection</h3>
-            <p>Gather teleoperation trajectories using Seeed reBot Arm B601-RS in physical environments and emulate dual-camera SO-ARM101 setups inside NVIDIA Isaac Sim.</p>
+            <div class="feature-media-box">
+              <video autoplay loop muted playsinline preload="auto">
+                <source src="video/S1.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="feature-card-body">
+              <h3>1. Real & Sim Data Collection</h3>
+              <p>Gather teleoperation trajectories using Seeed reBot Arm B601-RS in physical environments and emulate dual-camera SO-ARM101 setups inside NVIDIA Isaac Sim.</p>
+            </div>
           </div>
 
           <div class="feature-card">
-            <div class="feature-icon"><i class="fas fa-film"></i></div>
-            <h3>2. Cosmos Transfer Scene Augmentation</h3>
-            <p>Empower imitation learning policies using NVIDIA Cosmos3 Transfer video-to-video generative models with Canny edge & SAM2 segmentation control signals.</p>
+            <div class="feature-media-box">
+              <video autoplay loop muted playsinline preload="auto">
+                <source src="video/S2.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="feature-card-body">
+              <h3>2. Cosmos Transfer Scene Augmentation</h3>
+              <p>Empower imitation learning policies using NVIDIA Cosmos3 Transfer video-to-video generative models with Canny edge & SAM2 segmentation control signals.</p>
+            </div>
           </div>
 
           <div class="feature-card">
-            <div class="feature-icon"><i class="fas fa-brain"></i></div>
-            <h3>3. Isaac GR00T N1.7 Fine-Tuning</h3>
-            <p>Train cross-embodiment Vision-Language-Action (VLA) models using System 2 VLM + System 1 Diffusion Transformer architecture on your custom robot dataset.</p>
+            <div class="feature-media-box">
+              <img src="image/S3.png" alt="Isaac GR00T 1.7 Fine-Tuning">
+            </div>
+            <div class="feature-card-body">
+              <h3>3. Isaac GR00T 1.7 Fine-Tuning</h3>
+              <p>Train cross-embodiment Vision-Language-Action (VLA) models using System 2 VLM + System 1 Diffusion Transformer architecture on your custom robot dataset.</p>
+            </div>
           </div>
 
           <div class="feature-card">
-            <div class="feature-icon"><i class="fas fa-bolt"></i></div>
-            <h3>4. Jetson TensorRT Acceleration</h3>
-            <p>Export ONNX graphs and compile a target-specific 7-engine TensorRT bundle on Jetson AGX Thor and Orin for real-time edge execution.</p>
+            <div class="feature-media-box">
+              <video autoplay loop muted playsinline preload="auto">
+                <source src="video/S4.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="feature-card-body">
+              <h3>4. Jetson TensorRT Acceleration</h3>
+              <p>Export ONNX graphs and compile a target-specific 7-engine TensorRT bundle on Jetson AGX Thor and Orin for real-time edge execution.</p>
+            </div>
           </div>
         </div>
       </section>

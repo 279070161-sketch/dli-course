@@ -1,17 +1,17 @@
-# Train the GR00T N1.7 Policy
+# Train the GR00T 1.7 Policy
 
-This article introduces Nvidia's latest VLA model, Isaac GR00T N1.7, and fine-tunes a task-specific VLA model using the training data prepared in previous sections.
+This article introduces Nvidia's latest VLA model, Isaac GR00T 1.7, and fine-tunes a task-specific VLA model using the training data prepared in previous sections.
 
 ## Learning Objectives
 
-- Understand the Nvidia Isaac GR00T N1.7 VLA model
-- Fine-tune a GR00T N1.7 model using previously collected data
+- Understand the Nvidia Isaac GR00T 1.7 VLA model
+- Fine-tune a GR00T 1.7 model using previously collected data
 
-## Nvidia Isaac GR00T N1.7
+## Nvidia Isaac GR00T 1.7
 
-NVIDIA Isaac GR00T N1.7 is an open vision-language-action (VLA) model for generalized humanoid robot skills. This cross-embodiment model takes multimodal input, including language and images, to perform manipulation tasks in diverse environments.
+NVIDIA Isaac GR00T 1.7 is an open vision-language-action (VLA) model for generalized humanoid robot skills. This cross-embodiment model takes multimodal input, including language and images, to perform manipulation tasks in diverse environments.
 
-![Nvidia Isaac GR00T N1.7 Architecture](../image/62371d24-1d46-48c9-8fc9-f1d387f29786.png)
+![Nvidia Isaac GR00T 1.7 Architecture](../image/62371d24-1d46-48c9-8fc9-f1d387f29786.png)
 
 ## Prepare Python Env
 
@@ -78,7 +78,7 @@ After execution, the program will downgrade the previously collected LeRobot dat
 }
 ```
 
-## Finetune the GR00T N1.7
+## Finetune the GR00T 1.7
 
 Prepare the training configuration file:
 
@@ -171,7 +171,7 @@ cd ~/Isaac-GR00T
 
 export SAVE_STEPS=5000
 bash examples/finetune.sh \
-  --base-model-path nvidia/GR00T-N1.7-3B \
+  --base-model-path nvidia/GR00T-1.7-3B \
   --dataset-path /home/ae/youjiang/grab_jetson \
   --modality-config-path examples/rebot_arm_rs/rebot_config.py \
   --embodiment-tag NEW_EMBODIMENT \
@@ -188,11 +188,11 @@ bash examples/finetune.sh \
 
 ![Training Execution Output Log](../image/18f23df2-a415-4a75-a7c4-65ef842cc9cc.png)
 
-After training is complete, you can find the fine-tuned GR00T N1.7 model files in the `--output-dir` directory.
+After training is complete, you can find the fine-tuned GR00T 1.7 model files in the `--output-dir` directory.
 
 ![Finetuned Model Output Directory Files](../image/bb6a6174-3ca5-482a-a362-bbe4e1a0113a.png)
 
 ## References
 
-- [Hugging Face GR00T-N1.7-3B Model Repository](https://huggingface.co/nvidia/GR00T-N1.7-3B/tree/main)
+- [Hugging Face GR00T-1.7-3B Model Repository](https://huggingface.co/nvidia/GR00T-1.7-3B/tree/main)
 - [NVIDIA Isaac-GR00T GitHub Repository](https://github.com/NVIDIA/Isaac-GR00T/tree/main)

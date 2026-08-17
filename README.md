@@ -17,7 +17,7 @@
   - [x] 3.1 [Collect Data from Real Env](file:///f:/projects/DLI%20Course/03_Get_Your_Own_VLA_Model/01_Collect_Data_from_Real_Env.md)
   - [x] 3.2 [Collect Data from Isaac Sim](file:///f:/projects/DLI%20Course/03_Get_Your_Own_VLA_Model/02_Collect_Data_from_Isaac_Sim.md)
   - [x] 3.3 [Datasets Augment](file:///f:/projects/DLI%20Course/03_Get_Your_Own_VLA_Model/03_Datasets_Augment.md)
-  - [x] 3.4 [Train the GR00T N1.7 Policy](file:///f:/projects/DLI%20Course/03_Get_Your_Own_VLA_Model/04_Train_the_GR00T_N1_7_Policy.md)
+  - [x] 3.4 [Train the GR00T 1.7 Policy](file:///f:/projects/DLI%20Course/03_Get_Your_Own_VLA_Model/04_Train_the_GR00T_N1_7_Policy.md)
   - [x] 3.5 [Evaluate in Real Env](file:///f:/projects/DLI%20Course/03_Get_Your_Own_VLA_Model/05_Evaluate_in_Real_Env.md)
 
 - [x] **4. Deploy on Jetson**
@@ -25,7 +25,7 @@
   - [x] 4.2 [Connect the Robot Hardware](file:///f:/projects/DLI%20Course/04_Deploy_on_Jetson/02_Connect_the_Robot_Hardware.md)
   - [x] 4.3 [Configure the GR00T Software Environment](file:///f:/projects/DLI%20Course/04_Deploy_on_Jetson/03_Configure_the_GR00T_Software_Environment.md)
   - [x] 4.4 [Prepare the Dataset and Model Assets](file:///f:/projects/DLI%20Course/04_Deploy_on_Jetson/04_Prepare_the_Dataset_and_Model_Assets.md)
-  - [x] 4.5 [Run GR00T N1.7 TensorRT Inference](file:///f:/projects/DLI%20Course/04_Deploy_on_Jetson/05_Run_GR00T_N1_7_TensorRT_Inference.md)
+  - [x] 4.5 [Run GR00T 1.7 TensorRT Inference](file:///f:/projects/DLI%20Course/04_Deploy_on_Jetson/05_Run_GR00T_N1_7_TensorRT_Inference.md)
 
 - [x] **5. Reference**
   - [x] 5.1 [Reference](file:///f:/projects/DLI%20Course/05_Reference/01_Reference.md)

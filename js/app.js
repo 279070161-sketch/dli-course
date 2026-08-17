@@ -614,6 +614,11 @@
       img.setAttribute('loading', 'lazy');
       img.setAttribute('decoding', 'async');
 
+      // Skip lightbox for images wrapped in anchor tags (clickable links)
+      if (img.closest('a')) {
+        return;
+      }
+
       img.addEventListener('click', () => {
         lightboxImg.src = img.src;
         lightboxImg.alt = img.alt || 'Zoomed Image View';

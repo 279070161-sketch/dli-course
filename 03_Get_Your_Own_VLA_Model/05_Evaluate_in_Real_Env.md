@@ -1,6 +1,6 @@
 # Evaluate in Real Env
 
-In this article, we will demonstrate how to deploy the trained GR00T N1.7 model in a real-world environment to validate the practical performance of the model obtained from the training process described in previous sections.
+In this article, we will demonstrate how to deploy the trained GR00T 1.7 model in a real-world environment to validate the practical performance of the model obtained from the training process described in previous sections.
 
 ## Learning Objectives
 

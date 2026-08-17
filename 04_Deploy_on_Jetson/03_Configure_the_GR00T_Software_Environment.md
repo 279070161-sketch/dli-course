@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This chapter installs the validated GR00T N1.7 deployment repository and prepares the target-specific runtime. Complete it after JetPack and the hardware interfaces are working. Model assets and dataset conversion are handled in the next chapter.
+This chapter installs the validated GR00T 1.7 deployment repository and prepares the target-specific runtime. Complete it after JetPack and the hardware interfaces are working. Model assets and dataset conversion are handled in the next chapter.
 
 ## Learning Objectives
 
@@ -88,7 +88,7 @@ Thor may also use the repository's Thor Docker profile when an isolated environm
 
 ## Obtain Hugging Face Access
 
-The official GR00T N1.7 backbone is `nvidia/Cosmos-Reason2-2B` and requires acceptance of the NVIDIA model license.
+The official GR00T 1.7 backbone is `nvidia/Cosmos-Reason2-2B` and requires acceptance of the NVIDIA model license.
 
 1. Open [NVIDIA Cosmos-Reason2-2B](https://huggingface.co/nvidia/Cosmos-Reason2-2B).
 2. Accept the license agreement.

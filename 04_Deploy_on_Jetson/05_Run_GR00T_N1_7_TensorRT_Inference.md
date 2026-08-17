@@ -1,8 +1,8 @@
-# Run GR00T N1.7 TensorRT Inference on Jetson
+# Run GR00T 1.7 TensorRT Inference on Jetson
 
 ## Introduction
 
-This chapter builds and runs the full GR00T N1.7 TensorRT pipeline on Jetson AGX Orin or Jetson AGX Thor. It assumes that JetPack, hardware interfaces, the deployment repository, checkpoint, backbone, and LeRobot dataset were prepared in the preceding chapters.
+This chapter builds and runs the full GR00T 1.7 TensorRT pipeline on Jetson AGX Orin or Jetson AGX Thor. It assumes that JetPack, hardware interfaces, the deployment repository, checkpoint, backbone, and LeRobot dataset were prepared in the preceding chapters.
 
 The workflow is limited to TensorRT export, engine building, offline inference, and policy-server startup. Robot wiring, USB-CAN drivers, camera mapping, dataset conversion, and PyTorch environment setup are documented separately.
 
@@ -15,9 +15,9 @@ The workflow is limited to TensorRT export, engine building, offline inference, 
 
 ## Demo Video
 
-- [GR00T N1.7 TensorRT demo](https://seeedstudio.feishu.cn/wiki/JwwnwzFsPi5bFpkU8RscGWOrnWc)
+- [GR00T 1.7 TensorRT demo](https://seeedstudio.feishu.cn/wiki/JwwnwzFsPi5bFpkU8RscGWOrnWc)
 
-![GR00T N1.7 TensorRT Demo Video Frame](../image/RESTORE_IMAGE_JWW_01.gif)
+![GR00T 1.7 TensorRT Demo Video Frame](../image/RESTORE_IMAGE_JWW_01.gif)
 
 ## Prerequisites
 

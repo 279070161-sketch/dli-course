@@ -315,18 +315,20 @@ a:hover {
 
 .brand-title {
   font-weight: 700;
-  font-size: 1.1rem;
+  font-size: 0.92rem;
   color: var(--text-primary);
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  white-space: nowrap;
 }
 
 .brand-subtitle {
   font-weight: 400;
   color: var(--text-muted);
-  font-size: 0.85rem;
+  font-size: 0.88rem;
   transition: color 0.25s ease, transform 0.25s ease;
+  white-space: nowrap;
 }
 
 .brand-container:hover .brand-subtitle {
@@ -645,8 +647,11 @@ canvas.ascii-bg {
   background-color: var(--nv-surface-1);
   border: 1px solid var(--nv-border);
   border-radius: 12px;
-  padding: 1.75rem;
+  padding: 0;
+  overflow: hidden;
   transition: all 0.25s ease;
+  display: flex;
+  flex-direction: column;
 }
 
 .feature-card:hover {
@@ -655,17 +660,38 @@ canvas.ascii-bg {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
 }
 
-.feature-icon {
-  width: 48px;
-  height: 48px;
-  border-radius: 10px;
-  background-color: rgba(118, 185, 0, 0.1);
-  color: var(--nv-green);
+.feature-media-box {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  height: auto;
+  border-radius: 0;
+  overflow: hidden;
+  margin-bottom: 0;
+  border: none;
+  border-bottom: 1px solid var(--nv-border);
+  background-color: var(--nv-surface-2);
+  position: relative;
+}
+
+.feature-media-box video,
+.feature-media-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.feature-card:hover .feature-media-box video,
+.feature-card:hover .feature-media-box img {
+  transform: scale(1.04);
+}
+
+.feature-card-body {
+  padding: 1.5rem;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.4rem;
-  margin-bottom: 1.25rem;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
 .feature-card h3 {
@@ -676,6 +702,71 @@ canvas.ascii-bg {
 .feature-card p {
   color: var(--text-secondary);
   font-size: 0.925rem;
+}
+
+/* Workflow Pipeline Grid */
+.workflow-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-top: 1rem;
+}
+
+.workflow-card {
+  background-color: var(--nv-surface-1);
+  border: 1px solid var(--nv-border);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  cursor: default;
+}
+
+.workflow-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--nv-green);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.workflow-img-box {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background-color: var(--nv-dark-bg);
+}
+
+.workflow-img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s ease;
+}
+
+.workflow-card:hover .workflow-img-box img {
+  transform: scale(1.05);
+}
+
+.workflow-label {
+  display: block;
+  text-align: center;
+  padding: 0.75rem 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+@media (max-width: 1100px) {
+  .workflow-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .workflow-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 /* Chapters Modules Cards */

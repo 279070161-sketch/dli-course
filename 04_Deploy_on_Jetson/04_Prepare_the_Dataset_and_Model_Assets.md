@@ -2,7 +2,7 @@
 
 ## Introduction
 
-GR00T TensorRT export requires the same dataset schema, embodiment configuration, checkpoint metadata, and VLM backbone used during training. This chapter converts a LeRobot v3.0 recording into the per-episode layout consumed by the validated GR00T N1.7 workflow and verifies all model assets before export.
+GR00T TensorRT export requires the same dataset schema, embodiment configuration, checkpoint metadata, and VLM backbone used during training. This chapter converts a LeRobot v3.0 recording into the per-episode layout consumed by the validated GR00T 1.7 workflow and verifies all model assets before export.
 
 ## Learning Objectives
 
@@ -478,7 +478,7 @@ Training-state files such as `optimizer.pt`, `scheduler.pt`, and `trainer_state.
 
 ## Prepare the VLM Backbone
 
-GR00T N1.7 defaults to `nvidia/Cosmos-Reason2-2B`:
+GR00T 1.7 defaults to `nvidia/Cosmos-Reason2-2B`:
 
 ```bash
 hf download nvidia/Cosmos-Reason2-2B \
@@ -489,7 +489,7 @@ test -f "${GR00T_BACKBONE_PATH}/model.safetensors" || \
   test -f "${GR00T_BACKBONE_PATH}/model.safetensors.index.json"
 ```
 
-The validated repository can also use `Qwen/Qwen3-VL-2B-Instruct` through `GR00T_BACKBONE_PATH`. Qwen3-VL is a validated alternative for this checkpoint and repository revision, not the official GR00T N1.7 default.
+The validated repository can also use `Qwen/Qwen3-VL-2B-Instruct` through `GR00T_BACKBONE_PATH`. Qwen3-VL is a validated alternative for this checkpoint and repository revision, not the official GR00T 1.7 default.
 
 ## Asset Readiness Checklist
 
@@ -504,6 +504,6 @@ The following retained benchmark result shows the downstream Thor TensorRT pipel
 
 ## Next Step
 
-Continue with [Run GR00T N1.7 TensorRT Inference on Jetson](https://seeedstudio.feishu.cn/wiki/JwwnwzFsPi5bFpkU8RscGWOrnWc) to export ONNX graphs, build the target-specific engines, and run inference on Orin or Thor.
+Continue with [Run GR00T 1.7 TensorRT Inference on Jetson](https://seeedstudio.feishu.cn/wiki/JwwnwzFsPi5bFpkU8RscGWOrnWc) to export ONNX graphs, build the target-specific engines, and run inference on Orin or Thor.
 
 

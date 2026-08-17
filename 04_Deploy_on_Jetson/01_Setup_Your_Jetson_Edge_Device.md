@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This chapter prepares the Jetson platform used throughout the GR00T N1.7 deployment series. The validated targets are Jetson AGX Orin and Jetson AGX Thor. Complete the operating-system installation and basic platform checks here before connecting the robot or installing the inference software.
+This chapter prepares the Jetson platform used throughout the GR00T 1.7 deployment series. The validated targets are Jetson AGX Orin and Jetson AGX Thor. Complete the operating-system installation and basic platform checks here before connecting the robot or installing the inference software.
 
 <div style="display: flex; gap: 1rem; margin: 1.5rem 0;">
   <img src="../image/85812e43-df77-4066-9654-88e93622cc31.png" alt="Jetson Device 1" style="width: 50%; border-radius: 8px; object-fit: cover;">

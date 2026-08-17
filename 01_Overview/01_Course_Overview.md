@@ -1,6 +1,6 @@
 # Course Overview
 
-This course focuses on the complete development workflow of the reBot Arm B601 RS robotic arm. It guides learners through hardware setup, data collection, model training, simulation validation, and finally deployment and inference on a real robotic arm. By combining LeRobot, NVIDIA Isaac Sim, GR00T N1.7, and Jetson edge AI devices, this course helps build a complete experimental environment for robot learning and embodied AI applications.
+This course focuses on the complete development workflow of the reBot Arm B601 RS robotic arm. It guides learners through hardware setup, data collection, model training, simulation validation, and finally deployment and inference on a real robotic arm. By combining LeRobot, NVIDIA Isaac Sim, GR00T 1.7, and Jetson edge AI devices, this course helps build a complete experimental environment for robot learning and embodied AI applications.
 
 ![reBot Arm B601 RS](../image/83eb1f92-ec1f-4503-8599-712301dd3547.png)
 

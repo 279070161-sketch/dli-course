@@ -1,14 +1,10 @@
 # LeRobot Background and the Community
 
-![LeRobot Pipeline Architecture](../image/5718f38e-9971-4182-abcf-219441eee3d6.png)
+[![LeRobot Pipeline Architecture](../image/5718f38e-9971-4182-abcf-219441eee3d6.png)](https://huggingface.co/lerobot)
 
 ## What is LeRobot?
 
 LeRobot is an open-source robotics framework developed by Hugging Face. It provides a unified set of tools for robot data collection, policy training, deployment, and evaluation.
-
-One of the primary goals of LeRobot is to make robot learning more accessible. Rather than building separate tools for each stage of development, researchers and developers can use a single framework throughout the entire workflow, from collecting demonstrations to deploying policies on real robots.
-
-In recent years, LeRobot has also become a common platform for sharing datasets, benchmark tasks, and robot learning models across the robotics community.
 
 ## Why LeRobot?
 
