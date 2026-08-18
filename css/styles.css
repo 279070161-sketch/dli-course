@@ -371,6 +371,18 @@ a:hover {
   transform: translateX(3px);
 }
 
+@media (max-width: 1280px) {
+  .brand-subtitle {
+    display: none;
+  }
+}
+
+@media (max-width: 1080px) {
+  .brand-title {
+    display: none;
+  }
+}
+
 .header-center {
   flex: 1;
   max-width: 420px;
