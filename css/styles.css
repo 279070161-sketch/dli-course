@@ -1918,6 +1918,10 @@ canvas.ascii-bg {
   display: none;
 }
 
+body.in-landing-view #toc-toggle-btn {
+  display: none !important;
+}
+
 .search-icon-compact {
   display: none;
 }
@@ -1952,7 +1956,7 @@ canvas.ascii-bg {
 
 /* Laptop Screen Responsive Breakpoint (Collapse ON THIS PAGE TOC) */
 @media (max-width: 1400px) {
-  #toc-toggle-btn {
+  body.in-reader-view #toc-toggle-btn {
     display: flex !important;
   }
 
