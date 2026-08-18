@@ -2053,11 +2053,6 @@ body.in-landing-view #toc-toggle-btn {
   .sidebar-mobile-header {
     display: flex !important;
   }
-
-  /* Hide header theme button on narrow mobile to keep header clean */
-  .header-right #theme-toggle-btn {
-    display: none !important;
-  }
 }
 
 /* Floating Back-to-Top Button (Low-key & Translucent Glassmorphism) */
