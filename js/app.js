@@ -4,7 +4,96 @@
 
 (function () {
   let currentLessonIndex = 0;
-  const lessons = window.COURSE_DATA || [];
+  let currentLang = 'en';
+  let lessons = window.COURSE_DATA || [];
+
+  // UI Text Dictionary
+  const i18n = {
+    en: {
+      searchPlaceholder: 'Search course modules & code...',
+      courseOverview: 'Course Overview',
+      onThisPage: 'ON THIS PAGE',
+      documentation: 'Documentation',
+      start: 'Start',
+      modules: 'Modules',
+      noMatching: 'No matching lessons found.',
+      typeToSearch: 'Type to search course modules...',
+      noSubHeaders: 'No sub-headers',
+      searchTitle: 'Search course title, commands, parameters...',
+      course: 'Course',
+      backToOverview: 'Course Overview',
+      breadcrumbCourse: 'Course',
+      landingTitle: 'Learning Physical AI',
+      landingDesc: 'A Sim-to-Real VLA Pipeline with Seeed reBot Arm and NVIDIA Isaac',
+      landingModules: 'DETAILED MODULES',
+      landingPipeline: 'FULL PIPELINE',
+      landingChapters: 'CORE CHAPTERS',
+      landingHours: '20+ Learning hours',
+      landingLevel: 'Intermediate Level',
+      startLearning: 'Start Learning Now',
+      heroTitle: 'Learning<br>Physical AI',
+      heroDesc: 'A Sim-to-Real VLA Pipeline with Seeed<br>reBot Arm and NVIDIA Isaac',
+      brandTitle: 'A Sim-to-Real VLA Pipeline with Seeed reBot Arm and NVIDIA Isaac',
+      stackTitle: 'Physical AI & VLA Model Technical Stack',
+      stackSub: 'Master cutting-edge robotics learning pipelines with industry-grade software and hardware targets.',
+      chaptersTitle: 'Course Curriculum',
+      chaptersSub: 'Explore the complete 5-chapter, 19-module hands-on curriculum.',
+      pipelineTitle: 'End-to-End Learning Pipeline',
+      pipelineSub: 'From robot calibration to edge inference — a complete Sim-to-Real VLA workflow in six steps.',
+      feature1Title: '1. Real & Sim Data Collection',
+      feature1Desc: 'Gather teleoperation trajectories using Seeed reBot Arm B601-RS in physical environments and emulate dual-camera SO-ARM101 setups inside NVIDIA Isaac Sim.',
+      feature2Title: '2. Cosmos Transfer Scene Augmentation',
+      feature2Desc: 'Empower imitation learning policies using NVIDIA Cosmos3 Transfer video-to-video generative models with Canny edge & SAM2 segmentation control signals.',
+      feature3Title: '3. Isaac GR00T 1.7 Fine-Tuning',
+      feature3Desc: 'Train cross-embodiment Vision-Language-Action (VLA) models using System 2 VLM + System 1 Diffusion Transformer architecture on your custom robot dataset.',
+      feature4Title: '4. Jetson TensorRT Acceleration',
+      feature4Desc: 'Export ONNX graphs and compile a target-specific 7-engine TensorRT bundle on Jetson AGX Thor and Orin for real-time edge execution.',
+    },
+    zh: {
+      searchPlaceholder: '搜索课程模块和代码...',
+      courseOverview: '课程概览',
+      onThisPage: '本页目录',
+      documentation: '文档',
+      start: '开始学习',
+      modules: '个模块',
+      noMatching: '未找到匹配的课程。',
+      typeToSearch: '输入关键词搜索课程模块...',
+      noSubHeaders: '无子标题',
+      searchTitle: '搜索课程标题、命令、参数...',
+      course: '课程',
+      backToOverview: '课程概览',
+      breadcrumbCourse: '课程',
+      landingTitle: '学习具身智能',
+      landingDesc: 'Seeed reBot Arm 与 NVIDIA Isaac 的 Sim-to-Real VLA 流水线',
+      landingModules: '详细模块',
+      landingPipeline: '完整流水线',
+      landingChapters: '核心章节',
+      landingHours: '20+ 学习小时',
+      landingLevel: '中级水平',
+      startLearning: '开始学习',
+      heroTitle: '学习<br>具身智能',
+      heroDesc: 'Seeed reBot Arm 与 NVIDIA Isaac<br>的 Sim-to-Real VLA 流水线',
+      brandTitle: 'Seeed reBot Arm 与 NVIDIA Isaac 的 Sim-to-Real VLA 课程',
+      stackTitle: 'Physical AI & VLA 模型技术栈',
+      stackSub: '通过行业级软件和硬件平台，掌握前沿机器人学习流水线。',
+      chaptersTitle: '课程大纲与模块',
+      chaptersSub: '探索完整的 5 大章节、19 个实战模块课程。',
+      pipelineTitle: '端到端学习流水线',
+      pipelineSub: '从机械臂校准到边缘推理——完整的 Sim-to-Real VLA 六步工作流。',
+      feature1Title: '1. 真实与仿真数据采集',
+      feature1Desc: '在物理环境中使用 Seeed reBot Arm B601-RS 采集遥操作轨迹，并在 NVIDIA Isaac Sim 中模拟双摄像头 SO-ARM101 配置。',
+      feature2Title: '2. Cosmos Transfer 场景增强',
+      feature2Desc: '利用 NVIDIA Cosmos3 Transfer 视频到视频生成模型，结合 Canny 边缘和 SAM2 分割控制信号，增强模仿学习策略。',
+      feature3Title: '3. Isaac GR00T 1.7 微调',
+      feature3Desc: '在自定义机器人数据集上，使用 System 2 VLM + System 1 Diffusion Transformer 架构训练跨具身视觉-语言-动作（VLA）模型。',
+      feature4Title: '4. Jetson TensorRT 加速部署',
+      feature4Desc: '导出 ONNX 图并在 Jetson AGX Thor 与 Orin 上编译特定目标的 7 引擎 TensorRT 包，实现实时边缘执行。',
+    }
+  };
+
+  function t(key) {
+    return (i18n[currentLang] && i18n[currentLang][key]) || (i18n.en[key] || key);
+  }
 
   // DOM Elements
   const landingView = document.getElementById('landing-view');
@@ -33,12 +122,146 @@
 
   // Initialize
   function init() {
+    const savedLang = localStorage.getItem('dli_course_lang');
+    const browserLang = (navigator.language || '').startsWith('zh') ? 'zh' : 'en';
+    const initialLang = savedLang || browserLang;
+
+    if (initialLang === 'zh') {
+      currentLang = 'zh';
+      lessons = window.COURSE_DATA_ZH || window.COURSE_DATA;
+      const langBtn = document.getElementById('lang-toggle-btn');
+      if (langBtn) {
+        langBtn.textContent = 'EN';
+        langBtn.title = 'Switch to English';
+      }
+    }
+
     renderLandingChapters();
     renderSidebarNav();
     setupEventListeners();
-    
+    updateLandingTexts();
+    initCardInteractiveEffects();
+
     // Check URL hash for direct deep linking (e.g. #lesson-3.3)
     handleHashNavigation();
+  }
+
+  // Initialize 3D Tilt & Cursor Following Spotlight Glow for Cards (Matching rebot project)
+  function initCardInteractiveEffects() {
+    const cards = document.querySelectorAll('.feature-card');
+    cards.forEach(card => {
+      // Inject spotlight glow element if not already present
+      if (!card.querySelector('.card-spotlight-glow')) {
+        const spotlight = document.createElement('div');
+        spotlight.className = 'card-spotlight-glow';
+        card.appendChild(spotlight);
+      }
+
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        const mouseXPercent = (x / rect.width * 100).toFixed(2);
+        const mouseYPercent = (y / rect.height * 100).toFixed(2);
+
+        // Calculate 3D tilt angles (max +/- 6.5 deg)
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = (-(y - centerY) / centerY * 6.5);
+        const rotateY = ((x - centerX) / centerX * 6.5);
+
+        card.style.setProperty('--mouse-x', `${mouseXPercent}%`);
+        card.style.setProperty('--mouse-y', `${mouseYPercent}%`);
+        card.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) scale3d(1.02, 1.02, 1.02)`;
+        card.style.boxShadow = `0 14px 32px rgba(0, 0, 0, 0.45), ${-rotateY.toFixed(2)}px ${rotateX.toFixed(2)}px 24px rgba(141, 195, 31, 0.12)`;
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+        card.style.boxShadow = '';
+        card.style.setProperty('--mouse-x', '50%');
+        card.style.setProperty('--mouse-y', '50%');
+      });
+    });
+  }
+
+  // Switch Language
+  function switchLanguage(lang) {
+    if (lang === currentLang) return;
+    currentLang = lang;
+    localStorage.setItem('dli_course_lang', lang);
+    lessons = lang === 'zh' ? (window.COURSE_DATA_ZH || window.COURSE_DATA) : window.COURSE_DATA;
+
+    const langBtn = document.getElementById('lang-toggle-btn');
+    if (langBtn) {
+      langBtn.textContent = lang === 'zh' ? 'EN' : 'CN';
+      langBtn.title = lang === 'zh' ? 'Switch to English' : '切换到中文';
+    }
+
+    updateLandingTexts();
+    renderLandingChapters();
+    renderSidebarNav();
+
+    // If in reader view, re-render current lesson
+    if (readerView.style.display !== 'none') {
+      showReaderView(currentLessonIndex);
+    }
+  }
+
+  // Update Landing Page Texts
+  function updateLandingTexts() {
+    const heroTitle = document.querySelector('.hero-title');
+    const heroDesc = document.querySelector('.hero-desc');
+    const sectionTitle = document.querySelector('.section-title');
+    const sectionSub = document.querySelector('.section-sub');
+    const searchBtn = document.querySelector('.search-text-full');
+    const backBtn = document.getElementById('back-to-overview');
+    const searchInput = document.getElementById('search-input');
+    const tocTitle = document.querySelector('.toc-title');
+    const brandTitleSpan = document.querySelector('.brand-title span:first-child');
+    const chaptersTitle = document.querySelector('.course-chapters-title');
+    const chaptersSub = document.querySelector('.course-chapters-sub');
+
+    if (brandTitleSpan) brandTitleSpan.textContent = t('brandTitle');
+    if (heroTitle) heroTitle.innerHTML = t('heroTitle');
+    if (heroDesc) heroDesc.innerHTML = t('heroDesc');
+    if (searchBtn) searchBtn.innerHTML = `<i class="fas fa-search" style="margin-right: 0.5rem; color: var(--nv-green);"></i> ${t('searchPlaceholder')}`;
+    if (backBtn) backBtn.innerHTML = `<i class="fas fa-arrow-left"></i> ${t('backToOverview')}`;
+    if (searchInput) searchInput.placeholder = t('searchTitle');
+    if (tocTitle) tocTitle.textContent = t('onThisPage');
+
+    // Update feature cards
+    const featureCards = document.querySelectorAll('.feature-card h3');
+    const featureDesc = document.querySelectorAll('.feature-card p');
+    const titles = ['feature1Title', 'feature2Title', 'feature3Title', 'feature4Title'];
+    const descs = ['feature1Desc', 'feature2Desc', 'feature3Desc', 'feature4Desc'];
+    featureCards.forEach((el, i) => { if (titles[i]) el.textContent = t(titles[i]); });
+    featureDesc.forEach((el, i) => { if (descs[i]) el.textContent = t(descs[i]); });
+
+    // Update stats
+    const statVals = document.querySelectorAll('.stat-val');
+    const statLbls = document.querySelectorAll('.stat-lbl');
+    const vals = ['19', 'Sim-to-Real', '5', '20+ Learning hours'];
+    const valZh = ['19', 'Sim-to-Real', '5', '20+ 学习小时'];
+    const lbls = ['landingModules', 'landingPipeline', 'landingChapters', 'landingLevel'];
+    statVals.forEach((el, i) => { el.textContent = currentLang === 'zh' ? valZh[i] : vals[i]; });
+    statLbls.forEach((el, i) => { if (lbls[i]) el.textContent = t(lbls[i]); });
+
+    // Update CTA button
+    const ctaBtn = document.querySelector('.btn-primary.btn-pill');
+    if (ctaBtn) ctaBtn.innerHTML = `<i class="fas fa-play"></i> ${t('startLearning')}`;
+
+    // Update section title/subtitle
+    if (sectionTitle) sectionTitle.innerHTML = `<i class="fas fa-microchip"></i> ${t('stackTitle')}`;
+    if (sectionSub) sectionSub.textContent = t('stackSub');
+
+    if (chaptersTitle) chaptersTitle.innerHTML = `<i class="fas fa-graduation-cap"></i> ${t('chaptersTitle')}`;
+    if (chaptersSub) chaptersSub.textContent = t('chaptersSub');
+
+    // Update breadcrumb
+    const breadcrumbHome = document.getElementById('breadcrumb-home');
+    if (breadcrumbHome) breadcrumbHome.textContent = t('breadcrumbCourse');
   }
 
   // Handle Deep Linking
@@ -104,13 +327,15 @@
       const chapterBlock = document.createElement('div');
       chapterBlock.className = 'chapter-block';
 
+      const chapterBadgeText = currentLang === 'zh' ? `第 ${ch.chapterNum} 章` : `Chapter ${ch.chapterNum}`;
+
       chapterBlock.innerHTML = `
         <div class="chapter-header">
           <div class="chapter-title-wrap">
-            <span class="chapter-badge">Chapter ${ch.chapterNum}</span>
+            <span class="chapter-badge">${chapterBadgeText}</span>
             <span class="chapter-title-text">${ch.chapterTitle}</span>
           </div>
-          <span style="font-size: 0.85rem; color: var(--text-muted);">${ch.lessons.length} Modules</span>
+          <span style="font-size: 0.85rem; color: var(--text-muted);">${ch.lessons.length} ${t('modules')}</span>
         </div>
         <div class="lessons-list">
           ${ch.lessons.map(l => `
@@ -122,8 +347,8 @@
                 </div>
               </div>
               <div class="lesson-action-bar">
-                <span><i class="far fa-file-alt"></i> Documentation</span>
-                <span class="read-btn">Start <i class="fas fa-arrow-right"></i></span>
+                <span><i class="far fa-file-alt"></i> ${t('documentation')}</span>
+                <span class="read-btn">${t('start')} <i class="fas fa-arrow-right"></i></span>
               </div>
             </div>
           `).join('')}
@@ -255,23 +480,35 @@
       const cleanBody = body.replace(/^>\s?/gm, '');
       const lowerType = type.toLowerCase();
       let iconClass = 'fa-info-circle';
+      let calloutLabel = type;
       if (lowerType === 'warning') iconClass = 'fa-exclamation-triangle';
       if (lowerType === 'caution') iconClass = 'fa-radiation';
       if (lowerType === 'tip' || lowerType === 'important') iconClass = 'fa-lightbulb';
 
+      if (currentLang === 'zh') {
+        if (lowerType === 'note') calloutLabel = '提示';
+        if (lowerType === 'warning') calloutLabel = '警告';
+        if (lowerType === 'caution') calloutLabel = '注意';
+        if (lowerType === 'important') calloutLabel = '重要';
+        if (lowerType === 'tip') calloutLabel = '建议';
+      }
+
       return `<div class="callout-box ${lowerType}">
-        <div class="callout-title"><i class="fas ${iconClass}"></i> ${type}</div>
+        <div class="callout-title"><i class="fas ${iconClass}"></i> ${calloutLabel}</div>
         <div>${marked.parse(cleanBody)}</div>
       </div>\n`;
     });
 
     // Calculate & Inject Reading Metrics Badge below Title
     const { words, minutes } = calculateReadingMetrics(rawMd);
+    const readTimeText = currentLang === 'zh' ? `${minutes} 分钟阅读` : `${minutes} min read`;
+    const wordCountText = currentLang === 'zh' ? `${words.toLocaleString()} 字` : `${words.toLocaleString()} words`;
+
     const metricsHtml = `
       <div class="reading-metrics-tag">
-        <span class="metric-item"><i class="far fa-clock"></i> ${minutes} min read</span>
+        <span class="metric-item"><i class="far fa-clock"></i> ${readTimeText}</span>
         <span class="metric-divider">•</span>
-        <span class="metric-item"><i class="far fa-file-alt"></i> ${words.toLocaleString()} words</span>
+        <span class="metric-item"><i class="far fa-file-alt"></i> ${wordCountText}</span>
       </div>`;
 
     // Parse Markdown to HTML
@@ -516,10 +753,11 @@
       });
 
       // Word Wrap Button
+      const wrapText = currentLang === 'zh' ? '自动换行' : 'Wrap';
       const wrapBtn = document.createElement('button');
       wrapBtn.className = 'feishu-action-btn wrap-btn';
-      wrapBtn.innerHTML = `<i class="fas fa-level-down-alt fa-rotate-90"></i><span>Wrap</span>`;
-      wrapBtn.title = 'Toggle word wrap';
+      wrapBtn.innerHTML = `<i class="fas fa-level-down-alt fa-rotate-90"></i><span>${wrapText}</span>`;
+      wrapBtn.title = currentLang === 'zh' ? '切换自动换行' : 'Toggle word wrap';
       wrapBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         pre.classList.toggle('word-wrap');
@@ -527,10 +765,12 @@
       });
 
       // Copy Button (With Automatic Shell Prompt Stripper)
+      const copyText = currentLang === 'zh' ? '复制' : 'Copy';
+      const copiedText = currentLang === 'zh' ? '已复制' : 'Copied';
       const copyBtn = document.createElement('button');
       copyBtn.className = 'feishu-action-btn copy-btn';
-      copyBtn.innerHTML = `<i class="far fa-copy"></i><span>Copy</span>`;
-      copyBtn.title = 'Copy code';
+      copyBtn.innerHTML = `<i class="far fa-copy"></i><span>${copyText}</span>`;
+      copyBtn.title = currentLang === 'zh' ? '复制代码' : 'Copy code';
       copyBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         
@@ -538,12 +778,12 @@
         const cleanText = rawText.replace(/^[\s]*(\$|\#|\(.+?\)[\w@\-~\:\s]*[\$#])\s+/gm, '');
 
         navigator.clipboard.writeText(cleanText).then(() => {
-          copyBtn.innerHTML = `<i class="fas fa-check" style="color:var(--nv-green)"></i><span style="color:var(--nv-green)">Copied</span>`;
+          copyBtn.innerHTML = `<i class="fas fa-check" style="color:var(--nv-green)"></i><span style="color:var(--nv-green)">${copiedText}</span>`;
           if (window.trackEvent) {
             window.trackEvent('copy_code_snippet', { language: lang });
           }
           setTimeout(() => {
-            copyBtn.innerHTML = `<i class="far fa-copy"></i><span>Copy</span>`;
+            copyBtn.innerHTML = `<i class="far fa-copy"></i><span>${copyText}</span>`;
           }, 2000);
         });
       });
@@ -670,7 +910,7 @@
     const headings = markdownBody.querySelectorAll('h2, h3');
 
     if (headings.length === 0) {
-      tocList.innerHTML = '<li class="toc-item" style="color:var(--text-muted)">No sub-headers</li>';
+      tocList.innerHTML = '<li class="toc-item" style="color:var(--text-muted)">' + t('noSubHeaders') + '</li>';
       return;
     }
 
@@ -743,7 +983,7 @@
     searchResults.innerHTML = '';
 
     if (!query) {
-      searchResults.innerHTML = '<div style="padding: 1rem; color: var(--text-muted); text-align: center;">Type to search course modules...</div>';
+      searchResults.innerHTML = '<div style="padding: 1rem; color: var(--text-muted); text-align: center;">' + t('typeToSearch') + '</div>';
       return;
     }
 
@@ -758,7 +998,7 @@
     }
 
     if (matches.length === 0) {
-      searchResults.innerHTML = '<div style="padding: 1rem; color: var(--text-muted); text-align: center;">No matching lessons found.</div>';
+      searchResults.innerHTML = '<div style="padding: 1rem; color: var(--text-muted); text-align: center;">' + t('noMatching') + '</div>';
       return;
     }
 
@@ -979,6 +1219,14 @@
     if (themeToggleBtn) themeToggleBtn.addEventListener('click', toggleTheme);
     const mobileThemeToggleBtn = document.getElementById('mobile-theme-toggle-btn');
     if (mobileThemeToggleBtn) mobileThemeToggleBtn.addEventListener('click', toggleTheme);
+
+    // Language Toggle
+    const langToggleBtn = document.getElementById('lang-toggle-btn');
+    if (langToggleBtn) {
+      langToggleBtn.addEventListener('click', () => {
+        switchLanguage(currentLang === 'en' ? 'zh' : 'en');
+      });
+    }
 
     // Back to Top Floating Action Button Event Listeners
     const backToTopBtn = document.getElementById('back-to-top-btn');

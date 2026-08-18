@@ -26,7 +26,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com">
   <link rel="preconnect" href="https://cdn.jsdelivr.net">
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <!-- Local Design System Stylesheet -->
@@ -64,6 +64,7 @@
         <span class="search-icon-compact"><i class="fas fa-search"></i></span>
         <span class="kbd-shortcut">Ctrl K</span>
       </button>
+      <button class="icon-btn" id="lang-toggle-btn" title="Switch to Chinese / 切换到中文">CN</button>
       <button class="icon-btn" id="theme-toggle-btn" title="Toggle Light/Dark Theme">
         <i class="fas fa-sun"></i>
       </button>
@@ -163,7 +164,9 @@
 
           <div class="feature-card">
             <div class="feature-media-box">
-              <img src="image/S3.png" alt="Isaac GR00T 1.7 Fine-Tuning">
+              <video autoplay loop muted playsinline preload="auto">
+                <source src="video/飞书20260818-140948.mp4" type="video/mp4">
+              </video>
             </div>
             <div class="feature-card-body">
               <h3>3. Isaac GR00T 1.7 Fine-Tuning</h3>
@@ -280,6 +283,7 @@
   <script src="js/analytics.js"></script>
   <!-- Course Data & Main Application Scripts -->
   <script src="js/course-data.js"></script>
+  <script src="js/course-data-zh.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>
