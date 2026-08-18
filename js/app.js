@@ -115,10 +115,12 @@
   const themeToggleBtn = document.getElementById('theme-toggle-btn');
 
   // Configure Marked parser
-  marked.setOptions({
-    gfm: true,
-    breaks: true
-  });
+  if (typeof marked !== 'undefined') {
+    marked.setOptions({
+      gfm: true,
+      breaks: true
+    });
+  }
 
   // Initialize
   function init() {
