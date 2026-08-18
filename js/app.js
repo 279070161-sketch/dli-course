@@ -146,7 +146,7 @@
     handleHashNavigation();
   }
 
-  // Initialize 3D Tilt & Cursor Following Spotlight Glow for Cards (Matching rebot project)
+  // Initialize 3D Tilt & Cursor Following Spotlight Glow for Cards (Throttled via requestAnimationFrame)
   function initCardInteractiveEffects() {
     const cards = document.querySelectorAll('.feature-card');
     cards.forEach(card => {
@@ -157,25 +157,32 @@
         card.appendChild(spotlight);
       }
 
+      let ticking = false;
       card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
+        if (!ticking) {
+          window.requestAnimationFrame(() => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
 
-        const mouseXPercent = (x / rect.width * 100).toFixed(2);
-        const mouseYPercent = (y / rect.height * 100).toFixed(2);
+            const mouseXPercent = (x / rect.width * 100).toFixed(2);
+            const mouseYPercent = (y / rect.height * 100).toFixed(2);
 
-        // Calculate 3D tilt angles (max +/- 6.5 deg)
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        const rotateX = (-(y - centerY) / centerY * 6.5);
-        const rotateY = ((x - centerX) / centerX * 6.5);
+            // Calculate 3D tilt angles (max +/- 6.5 deg)
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            const rotateX = (-(y - centerY) / centerY * 6.5);
+            const rotateY = ((x - centerX) / centerX * 6.5);
 
-        card.style.setProperty('--mouse-x', `${mouseXPercent}%`);
-        card.style.setProperty('--mouse-y', `${mouseYPercent}%`);
-        card.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) scale3d(1.02, 1.02, 1.02)`;
-        card.style.boxShadow = `0 14px 32px rgba(0, 0, 0, 0.45), ${-rotateY.toFixed(2)}px ${rotateX.toFixed(2)}px 24px rgba(141, 195, 31, 0.12)`;
-      });
+            card.style.setProperty('--mouse-x', `${mouseXPercent}%`);
+            card.style.setProperty('--mouse-y', `${mouseYPercent}%`);
+            card.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) scale3d(1.02, 1.02, 1.02)`;
+            card.style.boxShadow = `0 14px 32px rgba(0, 0, 0, 0.45), ${-rotateY.toFixed(2)}px ${rotateX.toFixed(2)}px 24px rgba(141, 195, 31, 0.12)`;
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }, { passive: true });
 
       card.addEventListener('mouseleave', () => {
         card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
@@ -1149,8 +1156,12 @@
       performSearch('');
     });
 
+    let searchDebounceTimer;
     searchInput.addEventListener('input', (e) => {
-      performSearch(e.target.value);
+      clearTimeout(searchDebounceTimer);
+      searchDebounceTimer = setTimeout(() => {
+        performSearch(e.target.value);
+      }, 150);
     });
 
     // Close Search Modal on ESC or Outside Click

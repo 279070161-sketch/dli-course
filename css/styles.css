@@ -1,7 +1,38 @@
-/* ==========================================================================
-   NVIDIA DLI Course Design System & Landing Page Stylesheet
-   Target: DLI Course: Seeed reBot Arm Physical AI & VLA Model
-   ========================================================================== */
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Custom Sleek Dark Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--nv-dark-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--nv-border-light);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--nv-green);
+}
+
+/* Rendering Performance Optimization */
+.search-result-card,
+.lesson-item-card {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 120px;
+}
+
+.ascii-bg {
+  transform: translateZ(0);
+  will-change: opacity;
+}
 
 :root {
   /* Color Tokens */

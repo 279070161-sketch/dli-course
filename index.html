@@ -21,11 +21,18 @@
   <meta name="twitter:description" content="Master Physical AI, Sim-to-Real, Cosmos Transfer Data Augmentation, and Isaac GR00T 1.7 TensorRT deployment on Jetson AGX Thor and Orin.">
   <meta name="twitter:image" content="image/seeed_logo_c.svg">
 
-  <!-- Google Fonts & Icons -->
+  <!-- Preload Critical Performance Assets -->
+  <link rel="preload" href="css/styles.css" as="style">
+  <link rel="preload" href="image/DLI@2x.png" as="image">
+  <link rel="preload" href="image/seeed_logo_w.svg" as="image">
+
+  <!-- Resource Hints for CDNs -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com">
   <link rel="preconnect" href="https://cdn.jsdelivr.net">
+
+  <!-- Google Fonts & Font Awesome Icons -->
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -33,13 +40,27 @@
   <link rel="stylesheet" href="css/styles.css">
 
   <!-- Marked.js Markdown Parser & Prism Syntax Highlighter -->
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" defer></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js" defer></script>
+
+  <!-- Schema.org Structured Data for SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    "name": "Seeed reBot Arm B601-RS: Physical AI & VLA Model Course",
+    "description": "Master Physical AI, Sim-to-Real, Cosmos Transfer Data Augmentation, and Isaac GR00T 1.7 TensorRT deployment on Jetson AGX Thor and Orin with reBot Arm B601-RS.",
+    "provider": {
+      "@type": "Organization",
+      "name": "Seeed Studio & NVIDIA DLI",
+      "url": "https://www.seeedstudio.com"
+    }
+  }
+  </script>
 </head>
 <body>
 
