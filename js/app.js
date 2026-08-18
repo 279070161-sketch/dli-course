@@ -291,6 +291,8 @@
   function showLandingView() {
     landingView.style.display = 'block';
     readerView.style.display = 'none';
+    document.body.classList.add('in-landing-view');
+    document.body.classList.remove('in-reader-view');
     window.location.hash = '';
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
@@ -303,6 +305,8 @@
 
     landingView.style.display = 'none';
     readerView.style.display = 'block';
+    document.body.classList.remove('in-landing-view');
+    document.body.classList.add('in-reader-view');
     window.location.hash = `lesson-${lesson.id}`;
 
     // Update Breadcrumb

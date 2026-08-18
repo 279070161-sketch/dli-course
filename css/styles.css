@@ -1990,6 +1990,11 @@ canvas.ascii-bg {
     display: flex;
   }
 
+  /* Completely hide mobile menu button on landing page */
+  body.in-landing-view .mobile-menu-btn {
+    display: none !important;
+  }
+
   /* Compact Search Bar */
   .search-trigger-btn {
     width: 38px;
