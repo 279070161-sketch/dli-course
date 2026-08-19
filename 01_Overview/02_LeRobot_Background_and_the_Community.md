@@ -36,7 +36,7 @@ Together, these resources lower the barrier to entry for robot learning and acce
 
 Throughout this learning path, LeRobot will serve as the software foundation for data collection, policy training, and real-world deployment on the reBot B601 RS Arm.
 
-Before moving on, we recommend reviewing the official LeRobot documentation and completing the environment setup tutorial. Once the software environment is ready, we can begin building the complete Physical AI workflow in the following chapters.
+Before moving on, we recommend reviewing the official LeRobot documentation and completing the environment setup tutorial. Once the software environment is ready, we can begin building the complete 具身智能 workflow in the following chapters.
 
 ## More Resources
 

@@ -1,6 +1,6 @@
 # Summary
 
-In this session, you explored the complete Physical AI workflow that will be used throughout this course.
+In this session, you explored the complete 具身智能 workflow that will be used throughout this course.
 
 In the following module, you were introduced to building your robot lab to complete a pick-and-place task. You also learned about the LeRobot ecosystem, the role of community datasets, and how modern robot learning pipelines integrate data collection, training, deployment, and evaluation.
 

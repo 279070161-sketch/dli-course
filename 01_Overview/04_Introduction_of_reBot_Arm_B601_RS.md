@@ -4,7 +4,7 @@
 
 ## Introduction
 
-This is a low-cost 6+1-degree-of-freedom open-source robotic arm, built around the concept of 'truly open-source' and based on the Robstride Dynamics series motors, aimed at lowering the barrier to Physical AI sim-to-real learning. Its appearance and all open-source files (including hardware blueprints, detailed BOM lists, Python SDK, and software compatible with mainstream tools such as ROS1/2) are totally available for free to individual developers, students, and educational institutions.
+This is a low-cost 6+1-degree-of-freedom open-source robotic arm, built around the concept of 'truly open-source' and based on the Robstride Dynamics series motors, aimed at lowering the barrier to 具身智能 sim-to-real learning. Its appearance and all open-source files (including hardware blueprints, detailed BOM lists, Python SDK, and software compatible with mainstream tools such as ROS1/2) are totally available for free to individual developers, students, and educational institutions.
 
 ## Hardware Specifications
 
@@ -37,8 +37,8 @@ With a repeatability of ±0.1 mm, the reBot Arm B601-RS is well-suited for preci
 ### Logistics & Material Handling
 Featuring a rated payload of 2.5 kg and a maximum payload of 5 kg, the reBot Arm B601-RS supports gripping, transferring, and heavier handling operations. It can be deployed for sorting and palletizing tasks in warehouse or conveyor belt environments, reducing repetitive manual labor. The arm's compact form factor enables flexible operation in narrow storage aisles or between transfer stations.
 
-### Teleoperation & Physical AI Development
-Compatible with robot learning frameworks such as Hugging Face LeRobot, NVIDIA Isaac Sim, the reBot Arm B601-RS enables remote robot control, data collection, and AI models/policies training & deployment pipeline. It serves as a dexterous "hand" unit for Physical AI systems, recording action and force feedback data for robot reinforcement learning and understanding the dynamics via world models. This open ecosystem lowers the barrier for algorithm validation, helping developers transfer policies from simulation to real-world deployment.
+### Teleoperation & 具身智能 Development
+Compatible with robot learning frameworks such as Hugging Face LeRobot, NVIDIA Isaac Sim, the reBot Arm B601-RS enables remote robot control, data collection, and AI models/policies training & deployment pipeline. It serves as a dexterous "hand" unit for 具身智能 systems, recording action and force feedback data for robot reinforcement learning and understanding the dynamics via world models. This open ecosystem lowers the barrier for algorithm validation, helping developers transfer policies from simulation to real-world deployment.
 
 ### Research & Laboratory Automation
 High-precision and repeatable movements make the reBot Arm B601-RS ideal for tasks such as liquid handling, sample transfer, and experimental workflow automation. Its smooth and compliant motion control allows delicate manipulation of fragile samples like biological tissues or microfluidic chips. Open software and hardware interfaces enable researchers to customize experimental procedures and accelerate prototype validation in fields like drug screening or materials testing.

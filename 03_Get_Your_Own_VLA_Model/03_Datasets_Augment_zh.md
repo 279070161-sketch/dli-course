@@ -17,7 +17,7 @@
 
 ## Cosmos 简介
 
-**NVIDIA Cosmos** 是一个基础 AI 平台，旨在加速 **Physical AI**（如机器人和自动驾驶汽车）的开发。传统 AI 专注于文本和代码，而 Cosmos 专为理解、模拟物理世界并与其交互而构建。
+**NVIDIA Cosmos** 是一个基础 AI 平台，旨在加速 **具身智能**（如机器人和自动驾驶汽车）的开发。传统 AI 专注于文本和代码，而 Cosmos 专为理解、模拟物理世界并与其交互而构建。
 
 ## Cosmos3 Transfer 的工作原理
 
