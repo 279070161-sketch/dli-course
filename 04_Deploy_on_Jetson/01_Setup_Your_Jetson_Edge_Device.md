@@ -101,7 +101,7 @@ The Jetson AGX Orin Developer Kit uses different button and connector numbers fr
 4. Release Force Recovery.
 5. Confirm that NVIDIA SDK Manager detects the target.
 
-Reference: [NVIDIA Jetson AGX Orin Developer Kit User Guide: Force Recovery Mode](https://docs.nvidia.com/jetson/user-guides/my-jetson/site/orin/agx-orin/force_recovery.html)
+Reference: [NVIDIA Jetson AGX Orin Developer Kit User Guide: Force Recovery Mode](https://docs.nvidia.com/jetson/agx-orin-devkit/user-guide/latest/setup_bsp.html#hardware-setup)
 
 ## Install JetPack
 
