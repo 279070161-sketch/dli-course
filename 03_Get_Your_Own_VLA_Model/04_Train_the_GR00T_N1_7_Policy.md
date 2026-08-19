@@ -42,39 +42,39 @@ After execution, the program will downgrade the previously collected LeRobot dat
 
 ```json
 {
-  "state": {
-    "single_arm": {
-      "start": 0,
-      "end": 6
+    "state": {
+        "single_arm": {
+            "start": 0,
+            "end": 6
+        },
+        "gripper": {
+            "start": 6,
+            "end": 7
+        }
     },
-    "gripper": {
-      "start": 6,
-      "end": 7
-    }
-  },
-  "action": {
-    "single_arm": {
-      "start": 0,
-      "end": 6
+    "action": {
+        "single_arm": {
+            "start": 0,
+            "end": 6
+        },
+        "gripper": {
+            "start": 6,
+            "end": 7
+        }
     },
-    "gripper": {
-      "start": 6,
-      "end": 7
-    }
-  },
-  "video": {
-    "front": {
-      "original_key": "observation.images.front"
+    "video": {
+        "front": {
+            "original_key": "observation.images.front"
+        },
+        "side": {
+            "original_key": "observation.images.side"
+        }
     },
-    "side": {
-      "original_key": "observation.images.side"
+    "annotation": {
+        "human.task_description": {
+            "original_key": "task_index"
+        }
     }
-  },
-  "annotation": {
-    "human.task_description": {
-      "original_key": "task_index"
-    }
-  }
 }
 ```
 
@@ -87,7 +87,7 @@ cd ~/Isaac-GR00T
 mkdir -p examples/rebot_arm
 ```
 
-Then, copy the following files into `examples/rebot_arm_rs`.
+Then, copy the following files into `examples/rebot_arm`.
 
 `rebot_config.py`:
 
@@ -173,7 +173,7 @@ export SAVE_STEPS=5000
 bash examples/finetune.sh \
   --base-model-path nvidia/GR00T-1.7-3B \
   --dataset-path /home/ae/youjiang/grab_jetson \
-  --modality-config-path examples/rebot_arm_rs/rebot_config.py \
+  --modality-config-path examples/rebot_arm/rebot_config.py \
   --embodiment-tag NEW_EMBODIMENT \
   --output-dir ~/youjiang/output
 ```

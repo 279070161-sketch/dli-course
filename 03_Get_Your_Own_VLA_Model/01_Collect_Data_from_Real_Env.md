@@ -73,22 +73,21 @@ sudo ip link set can0 up
 Then start data collection:
 
 ```bash
-# Save Dataset Locally
-lerobot-record \
-    --robot.type=seeed_b601_rs_follower \
+lerobot-record   \
+    --robot.type=seeed_b601_rs_follower  \
     --robot.port=can0 \
     --robot.id=follower1 \
     --robot.can_adapter=socketcan \
-    --robot.cameras="{ front: {type: opencv, index_or_path: 6, width: 640, height: 480, fps: 30} }" \
+    --robot.cameras="{ front: {type: opencv, index_or_path: 6, width: 640, height: 480, fps: 30, fourcc: "YUYV"}, side: {type: opencv, index_or_path: 0, width: 640, height: 480, fps: 30, fourcc: "YUYV"}}" \
     --teleop.type=rebot_arm_102_leader \
     --teleop.port=/dev/ttyUSB0 \
     --teleop.id=rebot_arm_102_leader \
     --display_data=true \
     --dataset.repo_id=seeed_rebot_b601_rs/organize_stationery \
     --dataset.num_episodes=100 \
-    --dataset.single_task="Organize stationery" \
+    --dataset.single_task="Organize stationery"  \
     --dataset.push_to_hub=false \
-    --dataset.episode_time_s=25 \
+    --dataset.episode_time_s=25  \
     --dataset.reset_time_s=5
 ```
 

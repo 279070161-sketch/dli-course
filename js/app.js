@@ -64,35 +64,92 @@
       backToOverview: '课程概览',
       breadcrumbCourse: '课程',
       landingTitle: '学习具身智能',
-      landingDesc: 'Seeed reBot Arm 与 NVIDIA Isaac 的 Sim-to-Real VLA 流水线',
+      landingDesc: 'Seeed reBot Arm 与 NVIDIA Isaac 的 Sim-to-Real VLA 完整开发链路',
       landingModules: '详细模块',
-      landingPipeline: '完整流水线',
+      landingPipeline: '完整开发链路',
       landingChapters: '核心章节',
-      landingHours: '20+ 学习小时',
-      landingLevel: '中级水平',
+      landingHours: '20h+ 学习时长',
+      landingLevel: '中级难度',
       startLearning: '开始学习',
       heroTitle: '学习<br>具身智能',
-      heroDesc: 'Seeed reBot Arm 与 NVIDIA Isaac<br>的 Sim-to-Real VLA 流水线',
+      heroDesc: 'Seeed reBot Arm 与 NVIDIA Isaac<br>的 Sim-to-Real VLA 完整开发链路',
       brandTitle: 'Seeed reBot Arm 与 NVIDIA Isaac 的 Sim-to-Real VLA 课程',
       stackTitle: 'Physical AI & VLA 模型技术栈',
-      stackSub: '通过行业级软件和硬件平台，掌握前沿机器人学习流水线。',
+      stackSub: '通过行业级软件和硬件平台，掌握前沿机器人学习完整开发链路。',
       chaptersTitle: '课程大纲与模块',
       chaptersSub: '探索完整的 5 大章节、19 个实战模块课程。',
-      pipelineTitle: '端到端学习流水线',
+      pipelineTitle: '端到端学习工作流',
       pipelineSub: '从机械臂校准到边缘推理——完整的 Sim-to-Real VLA 六步工作流。',
       feature1Title: '1. 真实与仿真数据采集',
       feature1Desc: '在物理环境中使用 Seeed reBot Arm B601-RS 采集遥操作轨迹，并在 NVIDIA Isaac Sim 中模拟双摄像头 SO-ARM101 配置。',
-      feature2Title: '2. Cosmos Transfer 场景增强',
-      feature2Desc: '利用 NVIDIA Cosmos3 Transfer 视频到视频生成模型，结合 Canny 边缘和 SAM2 分割控制信号，增强模仿学习策略。',
+      feature2Title: '2. Cosmos 场景增强',
+      feature2Desc: '利用 NVIDIA Cosmos3 世界模型，结合 Canny 边缘 和 SAM2 分割控制信号，增强模仿学习数据集。',
       feature3Title: '3. Isaac GR00T 1.7 微调',
       feature3Desc: '在自定义机器人数据集上，使用 System 2 VLM + System 1 Diffusion Transformer 架构训练跨具身视觉-语言-动作（VLA）模型。',
       feature4Title: '4. Jetson TensorRT 加速部署',
-      feature4Desc: '导出 ONNX 图并在 Jetson AGX Thor 与 Orin 上编译特定目标的 7 引擎 TensorRT 包，实现实时边缘执行。',
+      feature4Desc: '导出 ONNX 计算图，并针对 Jetson AGX Thor 平台编译 7 个 TensorRT 引擎组成的目标平台专用推理包，以实现实时边缘推理。',
     }
   };
 
   function t(key) {
     return (i18n[currentLang] && i18n[currentLang][key]) || (i18n.en[key] || key);
+  }
+
+  // Global Toast Notification Helper
+  function showToast(message, type = 'success') {
+    let container = document.querySelector('.dli-toast-container');
+    if (!container) {
+      container = document.createElement('div');
+      container.className = 'dli-toast-container';
+      document.body.appendChild(container);
+    }
+
+    const toast = document.createElement('div');
+    toast.className = `dli-toast ${type}`;
+    const iconClass = type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle';
+    toast.innerHTML = `<i class="fas ${iconClass}"></i><span>${message}</span>`;
+    container.appendChild(toast);
+
+    requestAnimationFrame(() => {
+      toast.classList.add('show');
+    });
+
+    setTimeout(() => {
+      toast.classList.remove('show');
+      setTimeout(() => {
+        toast.remove();
+      }, 300);
+    }, 2500);
+  }
+
+  // Cross-browser Clipboard Copy Helper with Fallback
+  function copyToClipboard(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+      return navigator.clipboard.writeText(text);
+    } else {
+      return new Promise((resolve, reject) => {
+        try {
+          const textarea = document.createElement('textarea');
+          textarea.value = text;
+          textarea.style.position = 'fixed';
+          textarea.style.left = '-999999px';
+          textarea.style.top = '-999999px';
+          textarea.setAttribute('readonly', '');
+          document.body.appendChild(textarea);
+          textarea.focus();
+          textarea.select();
+          const successful = document.execCommand('copy');
+          document.body.removeChild(textarea);
+          if (successful) {
+            resolve();
+          } else {
+            reject(new Error('execCommand copy failed'));
+          }
+        } catch (err) {
+          reject(err);
+        }
+      });
+    }
   }
 
   // DOM Elements
@@ -252,7 +309,7 @@
     const statVals = document.querySelectorAll('.stat-val');
     const statLbls = document.querySelectorAll('.stat-lbl');
     const vals = ['19', 'Sim-to-Real', '5', '20+ Learning hours'];
-    const valZh = ['19', 'Sim-to-Real', '5', '20+ 学习小时'];
+    const valZh = ['19', 'Sim-to-Real', '5', '20h+ 学习时长'];
     const lbls = ['landingModules', 'landingPipeline', 'landingChapters', 'landingLevel'];
     statVals.forEach((el, i) => { el.textContent = currentLang === 'zh' ? valZh[i] : vals[i]; });
     statLbls.forEach((el, i) => { if (lbls[i]) el.textContent = t(lbls[i]); });
@@ -777,9 +834,12 @@
         wrapBtn.classList.toggle('active');
       });
 
-      // Copy Button (With Automatic Shell Prompt Stripper)
+      // Copy Button (With Automatic Shell Prompt Stripper & Fail-Safe Fallback)
       const copyText = currentLang === 'zh' ? '复制' : 'Copy';
       const copiedText = currentLang === 'zh' ? '已复制' : 'Copied';
+      const toastSuccessText = currentLang === 'zh' ? '代码已复制到剪贴板' : 'Code copied to clipboard';
+      const toastErrorText = currentLang === 'zh' ? '复制失败，请手动选择复制' : 'Copy failed, please copy manually';
+
       const copyBtn = document.createElement('button');
       copyBtn.className = 'feishu-action-btn copy-btn';
       copyBtn.innerHTML = `<i class="far fa-copy"></i><span>${copyText}</span>`;
@@ -790,14 +850,21 @@
         // Strip shell prompts (e.g. '$ ', '(.venv)...$ ', '# ') for clean terminal execution
         const cleanText = rawText.replace(/^[\s]*(\$|\#|\(.+?\)[\w@\-~\:\s]*[\$#])\s+/gm, '');
 
-        navigator.clipboard.writeText(cleanText).then(() => {
+        copyToClipboard(cleanText).then(() => {
           copyBtn.innerHTML = `<i class="fas fa-check" style="color:var(--nv-green)"></i><span style="color:var(--nv-green)">${copiedText}</span>`;
+          copyBtn.classList.add('active');
+          showToast(toastSuccessText, 'success');
+
           if (window.trackEvent) {
             window.trackEvent('copy_code_snippet', { language: lang });
           }
           setTimeout(() => {
             copyBtn.innerHTML = `<i class="far fa-copy"></i><span>${copyText}</span>`;
+            copyBtn.classList.remove('active');
           }, 2000);
+        }).catch((err) => {
+          console.error('Copy failed:', err);
+          showToast(toastErrorText, 'error');
         });
       });
 
