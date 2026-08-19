@@ -9,7 +9,7 @@
 | reBot Arm B601 RS | 6+1 DoF collaborative robot arm | [reBot Arm B601 RS](https://www.seeedstudio.com/reBot-Arm-B601-RS-Bundle-p-6898.html) | 1 |
 | reBot Leader Arm | 6+1 DoF teleoperation arm | [Star Arm 102](https://www.seeedstudio.com/Star-Arm-102-p-6765.html) | 1 |
 | reBot Arm B601 Power Adapter | | [48V 12.5A AC-DC Adapter](https://www.seeedstudio.com/48V-12.5A-AC-DC-Adapter-p-5898.html) | 1 |
-| reBot Leader Arm Power Adapter | | 100033211 AC/DC Power Adapter 12V 2A 5-in-1 （UK/US/EU/AU/KR Interchangeable Plugs） | 1 |
+| reBot Leader Arm Power Adapter | | [AC/DC Power Adapter 12V 2A 5-in-1 （UK/US/EU/AU/KR Interchangeable Plugs）](https://www.seeedstudio.com/AC-DC-Power-Adapter-DC5521-Male-12V-2A-1500mm-p-6839.html) | 1 |
 
 ## Workspace
 
