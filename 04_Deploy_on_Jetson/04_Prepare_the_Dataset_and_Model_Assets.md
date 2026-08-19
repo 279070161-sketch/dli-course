@@ -504,6 +504,6 @@ The following retained benchmark result shows the downstream Thor TensorRT pipel
 
 ## Next Step
 
-Continue with [Run GR00T 1.7 TensorRT Inference on Jetson](https://seeedstudio.feishu.cn/wiki/JwwnwzFsPi5bFpkU8RscGWOrnWc) to export ONNX graphs, build the target-specific engines, and run inference on Orin or Thor.
+Continue with [Run GR00T 1.7 TensorRT Inference on Jetson](#lesson-4.5) to export ONNX graphs, build the target-specific engines, and run inference on Orin or Thor.
 
 

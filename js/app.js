@@ -1347,6 +1347,11 @@
     }
 
     window.addEventListener('scroll', updateReadingProgress, { passive: true });
+
+    // Hash Navigation Listener for internal lesson links (e.g. #lesson-4.2)
+    window.addEventListener('hashchange', () => {
+      handleHashNavigation();
+    });
   }
 
   // ASCII Breathing Field Background Engine

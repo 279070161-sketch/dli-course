@@ -122,6 +122,6 @@ Do not assume that `/dev/video0` and `/dev/video1` remain stable after reconnect
 
 ## Next Step
 
-Continue with [Configure the GR00T Software Environment](https://seeedstudio.feishu.cn/wiki/GzdhwwZIViuS8ukulsQcn5uhnwg) to install the target-specific Python, CUDA, and TensorRT runtime.
+Continue with [Configure the GR00T Software Environment](#lesson-4.3) to install the target-specific Python, CUDA, and TensorRT runtime.
 
 

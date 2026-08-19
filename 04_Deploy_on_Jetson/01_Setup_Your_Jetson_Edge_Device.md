@@ -143,7 +143,7 @@ Reserve approximately 45–50 GB for a complete local TensorRT workflow.
 
 ## Next Step
 
-Continue with [Connect the Robot Hardware](https://seeedstudio.feishu.cn/wiki/VCR2w8XxRiqMVfkr1qQc8BClnXf) to connect the reBot arm, cameras, and USB-CAN adapter and to verify their Linux device nodes.
+Continue with [Connect the Robot Hardware](#lesson-4.2) to connect the reBot arm, cameras, and USB-CAN adapter and to verify their Linux device nodes.
 
 
 

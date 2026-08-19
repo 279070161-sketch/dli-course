@@ -129,4 +129,4 @@ The command must report `aarch64`, a CUDA-enabled PyTorch build, and the expecte
 
 ## Next Step
 
-Continue with [Prepare the Dataset and Model Assets](https://seeedstudio.feishu.cn/wiki/LAKxw9izKivJFEkOrEYchZPfnNf). That chapter validates the fine-tuned checkpoint, VLM backbone, and LeRobot dataset consumed by the TensorRT exporter.
+Continue with [Prepare the Dataset and Model Assets](#lesson-4.4). That chapter validates the fine-tuned checkpoint, VLM backbone, and LeRobot dataset consumed by the TensorRT exporter.
