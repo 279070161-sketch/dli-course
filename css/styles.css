@@ -1931,7 +1931,9 @@ canvas.ascii-bg {
   display: none;
 }
 
-body.in-landing-view #toc-toggle-btn {
+body.in-landing-view #toc-toggle-btn,
+body.in-landing-view #theme-toggle-btn,
+body.in-landing-view #mobile-theme-toggle-btn {
   display: none !important;
 }
 
