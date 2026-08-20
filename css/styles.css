@@ -500,6 +500,19 @@ canvas.ascii-bg {
   align-items: center;
 }
 
+.hero-bg-overlay-wrap {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hero-bg-overlay-wrap img,
 .hero-bg-overlay {
   position: absolute;
   top: 0;
@@ -2045,8 +2058,67 @@ body.in-landing-view #toc-toggle-btn {
 }
 
 @media (max-width: 768px) {
+  .hero-section {
+    min-height: auto;
+  }
+
+  .hero-container {
+    min-height: auto;
+    padding: 0 1.5rem;
+  }
+
+  .hero-left-col {
+    padding: 3rem 0 3.5rem 0;
+    align-items: center;
+    text-align: center;
+    max-width: 100%;
+  }
+
   .hero-title {
-    font-size: 2rem;
+    font-size: clamp(2rem, 7vw, 2.5rem);
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .hero-desc {
+    text-align: center;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 1.75rem;
+  }
+
+  .hero-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem 1.5rem;
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+
+  .stat-item {
+    align-items: center;
+    text-align: center;
+  }
+
+  .stat-val {
+    font-size: 1.35rem;
+  }
+
+  .stat-lbl {
+    font-size: 0.7rem;
+  }
+
+  .cta-group {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .btn-primary.btn-pill {
+    padding: 0.75rem 1.8rem;
+    font-size: 0.95rem;
+  }
+
+  .hero-bg-overlay-wrap img {
+    object-position: center bottom;
   }
 
   /* Show Logo & Theme Toggle at top of left sidebar drawer on mobile */
