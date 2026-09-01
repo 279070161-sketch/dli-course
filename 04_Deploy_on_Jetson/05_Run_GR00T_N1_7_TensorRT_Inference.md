@@ -17,7 +17,7 @@ The workflow is limited to TensorRT export, engine building, offline inference, 
 
 - [GR00T 1.7 TensorRT demo](https://seeedstudio.feishu.cn/wiki/JwwnwzFsPi5bFpkU8RscGWOrnWc)
 
-![GR00T 1.7 TensorRT Demo Video Frame](../image/RESTORE_IMAGE_JWW_01.gif)
+![GR00T 1.7 TensorRT Demo Video Frame](../image/gr00t_infer.gif)
 
 ## Prerequisites
 
