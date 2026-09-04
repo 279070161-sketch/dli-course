@@ -31,6 +31,7 @@
       landingHours: '20+ Learning hours',
       landingLevel: 'Intermediate Level',
       startLearning: 'Start Learning Now',
+      buyNow: 'Buy reBot Arm B601-RS',
       heroTitle: 'Learning<br>Physical AI',
       heroDesc: 'A Sim-to-Real VLA Pipeline with Seeed<br>reBot Arm and NVIDIA Isaac',
       brandTitle: 'A Sim-to-Real VLA Pipeline with Seeed reBot Arm and NVIDIA Isaac',
@@ -71,6 +72,7 @@
       landingHours: '20h+ 学习时长',
       landingLevel: '中级难度',
       startLearning: '开始学习',
+      buyNow: '购买 reBot Arm B601-RS',
       heroTitle: '学习<br>具身智能',
       heroDesc: 'Seeed reBot Arm 与 NVIDIA Isaac<br>的 Sim-to-Real VLA 完整开发链路',
       brandTitle: 'Seeed reBot Arm 与 NVIDIA Isaac 的 Sim-to-Real VLA 课程',
@@ -314,9 +316,11 @@
     statVals.forEach((el, i) => { el.textContent = currentLang === 'zh' ? valZh[i] : vals[i]; });
     statLbls.forEach((el, i) => { if (lbls[i]) el.textContent = t(lbls[i]); });
 
-    // Update CTA button
-    const ctaBtn = document.querySelector('.btn-primary.btn-pill');
-    if (ctaBtn) ctaBtn.innerHTML = `<i class="fas fa-play"></i> ${t('startLearning')}`;
+    // Update CTA buttons
+    const heroStartBtnEl = document.getElementById('hero-start-btn');
+    if (heroStartBtnEl) heroStartBtnEl.innerHTML = `<i class="fas fa-play"></i> ${t('startLearning')}`;
+    const heroBuyBtnEl = document.getElementById('hero-buy-btn');
+    if (heroBuyBtnEl) heroBuyBtnEl.innerHTML = `<i class="fas fa-shopping-cart"></i> <span>${t('buyNow')}</span>`;
 
     // Update section title/subtitle
     if (sectionTitle) sectionTitle.innerHTML = `<i class="fas fa-microchip"></i> ${t('stackTitle')}`;
@@ -1203,6 +1207,14 @@
           window.trackEvent('click_start_learning', { location: 'hero' });
         }
         showReaderView(0);
+      });
+    }
+    const heroBuyBtn = document.getElementById('hero-buy-btn');
+    if (heroBuyBtn) {
+      heroBuyBtn.addEventListener('click', () => {
+        if (window.trackEvent) {
+          window.trackEvent('click_buy_hardware', { location: 'hero', url: 'https://www.seeedstudio.com/reBot-Arm-B601-RS-Bundle-p-6898.html' });
+        }
       });
     }
     const heroExploreBtn = document.getElementById('hero-explore-btn');

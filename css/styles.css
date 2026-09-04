@@ -594,6 +594,7 @@ canvas.ascii-bg {
   display: flex;
   justify-content: flex-start;
   gap: 1rem;
+  flex-wrap: wrap;
 }
 
 .btn-primary.btn-pill {
@@ -618,6 +619,46 @@ canvas.ascii-bg {
   transform: translateY(-2px) scale(1.02);
   box-shadow: 0 8px 28px rgba(141, 195, 31, 0.5);
   text-decoration: none;
+}
+
+.btn-buy.btn-pill {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(8px);
+  color: var(--text-primary);
+  border: 1px solid var(--nv-green);
+  font-weight: 700;
+  padding: 0.85rem 2rem;
+  border-radius: 9999px;
+  font-size: 1.05rem;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  letter-spacing: 0.2px;
+  text-decoration: none;
+}
+
+.btn-buy.btn-pill:hover {
+  background: rgba(141, 195, 31, 0.18);
+  border-color: var(--nv-green-hover);
+  color: #ffffff;
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 6px 22px rgba(141, 195, 31, 0.3);
+  text-decoration: none;
+}
+
+[data-theme="light"] .btn-buy.btn-pill {
+  background: #ffffff;
+  color: #0f172a;
+  border: 1px solid var(--nv-green);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="light"] .btn-buy.btn-pill:hover {
+  background: rgba(141, 195, 31, 0.12);
+  color: #0f172a;
+  border-color: var(--nv-green-hover);
 }
 
 @media (max-width: 992px) {
