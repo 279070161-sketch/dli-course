@@ -124,24 +124,35 @@
     }, 2500);
   }
 
-  // Cross-browser Clipboard Copy Helper with Fallback
+  // Cross-browser Clipboard Copy Helper with Fail-Safe Fallback
   function copyToClipboard(text) {
-    if (navigator.clipboard && window.isSecureContext) {
-      return navigator.clipboard.writeText(text);
-    } else {
+    const fallbackCopy = (str) => {
       return new Promise((resolve, reject) => {
         try {
           const textarea = document.createElement('textarea');
-          textarea.value = text;
+          textarea.value = str;
           textarea.style.position = 'fixed';
-          textarea.style.left = '-999999px';
-          textarea.style.top = '-999999px';
-          textarea.setAttribute('readonly', '');
+          textarea.style.top = '0';
+          textarea.style.left = '0';
+          textarea.style.width = '2em';
+          textarea.style.height = '2em';
+          textarea.style.padding = '0';
+          textarea.style.border = 'none';
+          textarea.style.outline = 'none';
+          textarea.style.boxShadow = 'none';
+          textarea.style.background = 'transparent';
+          textarea.style.opacity = '0';
+
           document.body.appendChild(textarea);
           textarea.focus();
           textarea.select();
+          if (textarea.setSelectionRange) {
+            textarea.setSelectionRange(0, textarea.value.length);
+          }
+
           const successful = document.execCommand('copy');
           document.body.removeChild(textarea);
+
           if (successful) {
             resolve();
           } else {
@@ -151,6 +162,15 @@
           reject(err);
         }
       });
+    };
+
+    if (navigator.clipboard && window.isSecureContext) {
+      return navigator.clipboard.writeText(text).catch((err) => {
+        console.warn('navigator.clipboard.writeText failed, attempting execCommand fallback:', err);
+        return fallbackCopy(text);
+      });
+    } else {
+      return fallbackCopy(text);
     }
   }
 
@@ -672,7 +692,7 @@
       if (pre.parentNode && pre.parentNode.classList.contains('feishu-code-content')) return;
 
       const code = pre.querySelector('code');
-      const rawText = code ? code.innerText : pre.innerText;
+      const rawText = code ? (code.textContent || code.innerText) : (pre.textContent || pre.innerText);
 
       // Extract language class if present
       let lang = 'Bash';
@@ -851,8 +871,11 @@
       copyBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         
-        // Strip shell prompts (e.g. '$ ', '(.venv)...$ ', '# ') for clean terminal execution
-        const cleanText = rawText.replace(/^[\s]*(\$|\#|\(.+?\)[\w@\-~\:\s]*[\$#])\s+/gm, '');
+        // Dynamically extract text at click time to ensure latest content after language switch or layout renders
+        const currentCodeText = code ? (code.textContent || code.innerText) : (pre.textContent || pre.innerText);
+
+        // Strip shell prompts (e.g. '$ ', '(.venv)...$ ') for clean terminal execution, while preserving code comments (#)
+        const cleanText = (currentCodeText || rawText).replace(/^[\s]*(\$|\(.+?\)[\w@\-~\:\s]*[\$#])\s+/gm, '');
 
         copyToClipboard(cleanText).then(() => {
           copyBtn.innerHTML = `<i class="fas fa-check" style="color:var(--nv-green)"></i><span style="color:var(--nv-green)">${copiedText}</span>`;
