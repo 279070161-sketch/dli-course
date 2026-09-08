@@ -9,6 +9,20 @@ This article will guide you through collecting the training dataset required for
 
 ## Prepare the code and runtime environment
 
+### Install UV
+
+Before creating the Python virtual environment, install `uv`. Otherwise, the shell will report an error such as `uv: command not found`.
+
+```bash
+curl -LsSf https://astral.sh/uv/install.sh | sh
+echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
+source ~/.bashrc
+uv --version
+```
+
+If a version number is displayed, `uv` is ready. You can now prepare the workspace and create the virtual environment.
+
+### Prepare Runtime Environment
 Open a terminal and execute:
 
 ```bash
@@ -46,7 +60,7 @@ uv pip install motorbridge
 
 ## Test the camera
 
-If you are unsure of the camera ID, use the camera detection and preview tool provided by LeRobot to check which cameras are available on your computer and find their corresponding IDs. Please enter the `lerobot-find-camera` command in the terminal. After the program finishes executing, you can find the preview images in `~/rebot_lerobot/outputs/captured_images` folder.
+If you are unsure of the camera ID, use the camera detection and preview tool provided by LeRobot to check which cameras are available on your computer and find their corresponding IDs. Please enter the `lerobot-find-cameras` command in the terminal. After the program finishes executing, you can find the preview images in `~/rebot_lerobot/outputs/captured_images` folder.
 
 The naming convention for the preview images is: `<lowercase_camera_type>_dev_<camera_id>.png`.
 

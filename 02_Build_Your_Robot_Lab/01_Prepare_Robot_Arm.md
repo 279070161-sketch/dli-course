@@ -26,40 +26,9 @@ Built to be truly open. Featuring a 2.5 kg rated payload and ±0.1 mm repeatabil
 
 Product Link: [reBot Arm B601-RS Assembled Bundle](https://www.seeedstudio.com/reBot-Arm-B601-RS-Bundle-p-6898.html)
 
-### Assemble the Follower arm
+## Calibration roBot Arm
 
-If you purchased a fully assembled robotic arm, please skip the first step and proceed with the Calibration section.
-
-<iframe width="100%" height="420" src="https://www.youtube.com/embed/rfTQoFCfnMc" title="Assemble the Follower arm" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border-radius: 8px; margin: 1rem 0; width: 100%;"></iframe>
-
-### Reset Motors ID
-
-#### Hardware Components
-
-- [reBot Arm B601 DM Robotic Arm × 1](https://www.seeedstudio.com/reBot-Arm-B601-DM-Bundle.html)
-- [USB-CAN Adapter Board × 1](https://www.seeedstudio.com/DM-CAN-USB-Driver-Borad-p-6706.html)
-- [Signal-Power Separation Board × 1](https://www.seeedstudio.com/XT30-2-2-Power-Separation-Board-p-6707.html)
-- Woodworking Clamps × 2
-- USB-C Cable × 1
-- [24V 15A Power Supply (XT30 output) × 1](https://www.seeedstudio.com/AC-DC-Power-Adapter-IEC-60320-C14-XT30-Female-24V-4-5A-1200mm-L190-W92-5-H36mm-p-6764.html)
-- [Power Cord-US](https://www.seeedstudio.com/reServer-AC-US-p-5052.html) \ [Power Cord-EU](https://www.seeedstudio.com/seeedstudio-reServer-AC-EU-p-5051.html)
-- Dual-boot personal computer (Windows + Ubuntu / macOS)
-
-![Reset Motors ID Connection Diagram](../image/1280X1280%20(1).PNG)
-
-#### Software
-
-Please install the DM motor PC software on your computer (Windows system).
-
-[DM_Tools_v.1.8.0.1.exe (Supports Windows Only)](https://files.seeedstudio.com/wiki/robotics/projects/rebot_arm/DM_Tools_v1.8.0.1.exe)
-
-#### Configure Motors
-
-Follow the steps shown in the video to configure each motor one by one.
-
-## Calibration reBot Arm
-
-After completing the motor setup, we need to perform an overall calibration of the robotic arm. Since we will be using the LeRobot codebase to collect VLA datasets in subsequent steps, we will use LeRobot for this calibration process.
+Here we need to perform an overall calibration of the robotic arm. Since we will be using the LeRobot codebase to collect VLA datasets in subsequent steps, we will use LeRobot for this calibration process.
 
 ### Download and Install the LeRobot Code
 
@@ -75,6 +44,11 @@ sudo apt install -y ffmpeg
 git clone https://github.com/Seeed-Projects/lerobot.git
 git clone https://github.com/Seeed-Projects/lerobot-teleoperator-rebot-arm-102.git
 git clone https://github.com/Seeed-Projects/lerobot-robot-seeed-b601.git
+
+# Install UV
+curl -LsSf https://astral.sh/uv/install.sh | sh
+echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
+source ~/.bashrc
 
 # Create virtual environment (Python 3.12)
 uv venv --python 3.12 .venv
@@ -98,6 +72,7 @@ uv pip install motorbridge
 
 ```bash
 # Leader
+sudo apt remove brltty #Remove brltty
 sudo chmod 666 /dev/ttyUSB*
 # Follower
 sudo ip link set can0 down 2>/dev/null
@@ -105,11 +80,15 @@ sudo ip link set can0 type can bitrate 1000000 restart-ms 100
 sudo ip link set can0 up
 ```
 
+> [!NOTE]
+> If this is the first connection, you may get an error that /dev/ttyACM0 cannot be found. This is because brltty is occupying the serial port. Please execute `sudo apt remove brltty`.
+
 ### Calibrate the Robotic Arm
 
 Execute the following two commands in a terminal window on your PC to calibrate the robotic arm.
 
 - **Follower Arm**
+B601-RS only needs to be calibrated once after assembly. Here is the calibration command. Refer to the figure for the zero position (gripper fully closed).
 
 ```bash
 lerobot-calibrate \
@@ -118,6 +97,8 @@ lerobot-calibrate \
     --robot.id=follower1 \
     --robot.can_adapter=socketcan
 ```
+![Follow Arm 0 Pos](../image/rs_0pos.jpg)
+
 
 *Execution Log (SocketCAN Adapter):*
 
@@ -189,6 +170,10 @@ INFO 2026-07-28 13:55:38 follower.py:390 follower1 SeeedB601RSFollower disconnec
 ```
 
 - **Leader Arm**
+
+Following the prompts, move the leader arm to the zero position shown above, keep it still, then press Enter until calibration is complete. Refer to the figure for the zero position. 
+
+![Leader Arm 0 Pos](../image/53c63af6-f6d2-43ec-bbf8-951ab3c8c80e.png)
 
 ```bash
 lerobot-calibrate \
