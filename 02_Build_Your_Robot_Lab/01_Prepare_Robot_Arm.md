@@ -16,7 +16,7 @@ It is a low-cost, open-source robotic arm designed for education and research, a
 
 ![Leader Arm (Star Arm 102)](../image/53c63af6-f6d2-43ec-bbf8-951ab3c8c80e.png)
 
-[Star Arm 102 Product Link](https://www.seeedstudio.com/Star-Arm-102-p-6765.html)
+Product Link: [Star Arm 102](https://www.seeedstudio.com/Star-Arm-102-p-6765.html)
 
 ### Follower Arm
 
