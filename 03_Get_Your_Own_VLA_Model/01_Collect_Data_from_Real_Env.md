@@ -105,11 +105,64 @@ lerobot-record   \
     --dataset.reset_time_s=5
 ```
 
-> [!CAUTION]
-> During teleoperation, if the master-slave robotic arm experiences power disconnection, poor power contact, or signal line detachment, you must first stop the program code and return the robotic arm to its home zero position. Only then reconnect the power supply and restart the program. This prevents data disorder from causing robotic arm runaway and potential safety hazards.
+<details class="callout-box caution">
+<summary class='callout-title'><span><i class='fas fa-radiation'></i> CAUTION<span style='color: var(--text-primary); font-weight: 400; font-size: 1.025rem; display: block; margin-top: 0.4rem;'>If the robotic arm becomes uncontrollable: three-level emergency stop procedure</span></span></summary>
 
+During teleoperation, if power is lost, power contact is poor, or a signal cable detaches, **stop the program, return the arm to the zero position, and then reconnect power**. Otherwise, corrupted data may cause the arm to lose control.
+
+#### Level 1: Software Stop
+```Plain
+Press ESC or Ctrl+C
+# disable_torque_on_disconnect: True automatically disables motor torque
+```
+
+#### Level 2: Disconnect CAN (if Ctrl+C does not work and the arm keeps moving)
+```Bash
+sudo ip link set can0 down
+```
+
+This cuts the command path from the PC to the follower arm. The arm stops after it no longer receives commands.
+
+#### Level 3: Cut physical power (if the arm still moves after CAN is disconnected)
+```Plain
+1. Cut the leader arm power (12 V) — cuts teleoperation input
+2. Cut the follower arm power (48 V) — cuts motor power
+3. Unplug USB-CAN — ensures no residual commands
+```
+
+> Order is critical: cut the motor first → then the signal line → finally power.
+>
+> Do not unplug the USB data cable first. Some controllers execute cached commands when communication is lost.
+
+#### Recovery
+```Plain
+1. Manually return the arm to the zero position (gripper fully closed)
+2. Connect the follower arm 48 V power
+3. Connect the leader arm 12 V power
+4. Plug in the USB cable and USB-CAN
+5. Reconfigure CAN (ip link set can0 ...)
+6. Reapply serial permissions (chmod 666)
+7. Run lerobot-record again
+```
+
+#### Pre-run Checklist
+
+- `lerobot-find-cameras` has been run and the current front/side indices are confirmed
+- `--display_data` is set to `false`
+- `brltty` is removed (`sudo apt remove brltty`)
+- `/dev/ttyUSB*` permissions are set
+- `can0` status is `UP`
+- USB-CAN adapter is recognized
+- Follower arm 48 V power is connected
+- Leader arm 12 V power is connected
+- Both arms are calibrated
+- Terminal is in the virtual environment (`source .venv/bin/activate`)
+</details>
 > [!CAUTION]
 > Please ensure that you have configured the access permissions for the robotic arm port.
+
+> [!CAUTION]
+> If the robotic arm suddenly freezes during collection, the episode time may be too short. Increase `--dataset.episode_time_s=25` to `90`.
 
 > [!WARNING]
 > Please ensure that you have entered the correct camera parameters.
