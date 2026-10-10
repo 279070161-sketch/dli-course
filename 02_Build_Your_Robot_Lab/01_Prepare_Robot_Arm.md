@@ -97,7 +97,7 @@ lerobot-calibrate \
     --robot.id=follower1 \
     --robot.can_adapter=socketcan
 ```
-![Follow Arm 0 Pos](../image/rs_0pos.jpg)
+![Follow Arm 0 Pos](../image/rs_0pos.png)
 
 
 *Execution Log (SocketCAN Adapter):*
