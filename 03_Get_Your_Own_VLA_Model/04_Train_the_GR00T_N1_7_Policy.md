@@ -171,7 +171,7 @@ cd ~/Isaac-GR00T
 
 export SAVE_STEPS=5000
 bash examples/finetune.sh \
-  --base-model-path nvidia/GR00T-1.7-3B \
+  --base-model-path nvidia/GR00T-N1.7-3B \
   --dataset-path /home/ae/youjiang/grab_jetson \
   --modality-config-path examples/rebot_arm/rebot_config.py \
   --embodiment-tag NEW_EMBODIMENT \
@@ -194,5 +194,5 @@ After training is complete, you can find the fine-tuned GR00T 1.7 model files in
 
 ## References
 
-- [Hugging Face GR00T-1.7-3B Model Repository](https://huggingface.co/nvidia/GR00T-1.7-3B/tree/main)
+- [Hugging Face GR00T-N1.7-3B Model Repository](https://huggingface.co/nvidia/GR00T-N1.7-3B/tree/main)
 - [NVIDIA Isaac-GR00T GitHub Repository](https://github.com/NVIDIA/Isaac-GR00T/tree/main)
