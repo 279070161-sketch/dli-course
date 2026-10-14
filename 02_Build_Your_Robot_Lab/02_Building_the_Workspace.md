@@ -15,4 +15,4 @@
 
 | Item | Description | Model/Specs | Quantity | Details |
 |---|---|---|---|---|
-| WorkSpace | Standardized Teleoperation Data Acquisition Experimental Platform Provided by Seeed Studio | Will be listed on Seeed Studio's store. | 1 | - Lab Box<br>- Adjustable Light Source x2<br>- Cameras x2<br>- Cameras Mounts x2 |
+| WorkSpace | Standardized Teleoperation Data Acquisition Experimental Platform Provided by Seeed Studio | [Robotic Arm Data Collection Box](https://www.seeedstudio.com/Robotic-Arm-Data-Collection-Box-p-6943.html) | 1 | - Lab Box<br>- Adjustable Light Source x2<br>- Cameras x2<br>- Cameras Mounts x2 |

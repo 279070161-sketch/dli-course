@@ -1,5 +1,8 @@
 # Datasets Augment
 
+> [!NOTE]
+> This chapter is optional advanced material. It is recommended to complete the real-world loop first (collect data → train → evaluate in the real environment, sections 3.1–3.3). The workflow below applies to both real datasets and the simulated dataset from section 3.4, and is used to expand scene diversity beyond what was collected.
+
 Collecting data in real-world scenarios entails high costs and significant limitations. For instance:
 
 - **Limited Environments**: Data is typically collected across only a few fixed scenes.
@@ -38,7 +41,7 @@ The control signals (edges + segmentation) lock the robot's shape and motion in 
 | Control Type | Purpose | Pre-computation Required? |
 |---|---|---|
 | Edge | Preserves object outlines and structure, prevents subject deformation | Optional (framework can auto-compute Canny) |
-| Seg | Preserves semantic regions (robot/object/background boundaries) | Required (depends on SAM2) |
+| Segmentation | Preserves semantic regions (robot/object/background boundaries) | Required (depends on SAM2) |
 | Blur | Preserves global layout while allowing more texture variation | Optional (framework can auto-compute) |
 | Depth | Preserves spatial depth relationships | Required (depends on DepthAnything) |
 
@@ -50,7 +53,7 @@ The control signals (edges + segmentation) lock the robot's shape and motion in 
     </video>
   </div>
   <div>
-    <p style="font-weight: 600; font-size: 0.9rem; margin-bottom: 0.5rem; text-align: center;">Control Seg Preview</p>
+    <p style="font-weight: 600; font-size: 0.9rem; margin-bottom: 0.5rem; text-align: center;">Control Segmentation Preview</p>
     <video controls autoplay loop muted playsinline style="width: 100%; border-radius: 8px; border: 1px solid var(--nv-border);">
       <source src="../video/control_seg.mp4" type="video/mp4">
     </video>

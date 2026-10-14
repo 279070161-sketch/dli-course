@@ -15,10 +15,10 @@
 
 - [x] **3. Get Your Own VLA Model**
   - [x] 3.1 [Collect Data from Real Env](file:///f:/projects/DLI%20Course/03_Get_Your_Own_VLA_Model/01_Collect_Data_from_Real_Env.md)
-  - [x] 3.2 [Collect Data from Isaac Sim](file:///f:/projects/DLI%20Course/03_Get_Your_Own_VLA_Model/02_Collect_Data_from_Isaac_Sim.md)
-  - [x] 3.3 [Datasets Augment](file:///f:/projects/DLI%20Course/03_Get_Your_Own_VLA_Model/03_Datasets_Augment.md)
-  - [x] 3.4 [Train the GR00T 1.7 Policy](file:///f:/projects/DLI%20Course/03_Get_Your_Own_VLA_Model/04_Train_the_GR00T_N1_7_Policy.md)
-  - [x] 3.5 [Evaluate in Real Env](file:///f:/projects/DLI%20Course/03_Get_Your_Own_VLA_Model/05_Evaluate_in_Real_Env.md)
+  - [x] 3.2 [Train the GR00T 1.7 Policy](file:///f:/projects/DLI%20Course/03_Get_Your_Own_VLA_Model/02_Train_the_GR00T_N1_7_Policy.md)
+  - [x] 3.3 [Evaluate in Real Env](file:///f:/projects/DLI%20Course/03_Get_Your_Own_VLA_Model/03_Evaluate_in_Real_Env.md)
+  - [x] 3.4 [(Optional) Collect Data from Isaac Sim](file:///f:/projects/DLI%20Course/03_Get_Your_Own_VLA_Model/04_Collect_Data_from_Isaac_Sim.md)
+  - [x] 3.5 [(Optional) Datasets Augment](file:///f:/projects/DLI%20Course/03_Get_Your_Own_VLA_Model/05_Datasets_Augment.md)
 
 - [x] **4. Deploy on Jetson**
   - [x] 4.1 [Setup Your Jetson Edge Device](file:///f:/projects/DLI%20Course/04_Deploy_on_Jetson/01_Setup_Your_Jetson_Edge_Device.md)
