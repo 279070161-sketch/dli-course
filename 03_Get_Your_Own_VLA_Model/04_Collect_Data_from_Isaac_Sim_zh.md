@@ -99,7 +99,7 @@ LeRobot Python bridge -- UDP 127.0.0.1:5005 --> Isaac Sim B601
 ```
 
 > [!NOTE]
-> 上方截图由项目的 headless 截图脚本以 Path Tracing 渲染生成。8GB 显卡的实时 GUI 视口可能仍有噪点（DLSS Ray Reconstruction 不可用所致，见项目教程"已知问题"一节）。
+> 两个任务的场景文件都把渲染模式保存为 Path Tracing，因此 GUI 视口与上方截图一样干净、无噪点（代价是渲染负载更高）。显存较小的机器上如遇卡顿，见项目教程"已知问题"一节的缓解措施。
 
 ## 环境要求
 

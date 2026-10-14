@@ -99,7 +99,7 @@ The capture flow is the same (`R` reset / `S` record / `C` cancel), and the epis
 ```
 
 > [!NOTE]
-> The stills above are rendered with Path Tracing via the project's headless capture script. The real-time GUI viewport may still look noisy on 8 GB GPUs whose DLSS Ray Reconstruction is unavailable (see the project tutorial, "Known Issues").
+> Both task scenes save Path Tracing as their render mode, so the GUI viewport renders the same clean, denoised images as these stills (at a higher GPU load). See the project tutorial's "Known Issues" for mitigations on smaller GPUs.
 
 ## Environmental Requirements
 
