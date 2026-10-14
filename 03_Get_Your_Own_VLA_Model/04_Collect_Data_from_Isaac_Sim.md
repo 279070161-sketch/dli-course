@@ -99,7 +99,7 @@ The capture flow is the same (`R` reset / `S` record / `C` cancel), and the epis
 ```
 
 > [!NOTE]
-> The stills above were captured on an 8 GB laptop GPU; the speckle noise is a known rendering limitation of that hardware (see the project tutorial, "Known Issues"). On a recommended ≥12 GB RTX 40-series GPU the same scene renders clean.
+> The stills above are rendered with Path Tracing via the project's headless capture script. The real-time GUI viewport may still look noisy on 8 GB GPUs whose DLSS Ray Reconstruction is unavailable (see the project tutorial, "Known Issues").
 
 ## Environmental Requirements
 

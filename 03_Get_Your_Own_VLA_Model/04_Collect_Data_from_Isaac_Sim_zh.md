@@ -99,7 +99,7 @@ LeRobot Python bridge -- UDP 127.0.0.1:5005 --> Isaac Sim B601
 ```
 
 > [!NOTE]
-> 上方截图拍摄于 8GB 笔记本 GPU；画面噪点是该硬件的已知渲染限制（见项目教程"已知问题"一节）。在建议的 ≥12GB RTX 40 系显卡上加载同一场景，相机画面是干净的。
+> 上方截图由项目的 headless 截图脚本以 Path Tracing 渲染生成。8GB 显卡的实时 GUI 视口可能仍有噪点（DLSS Ray Reconstruction 不可用所致，见项目教程"已知问题"一节）。
 
 ## 环境要求
 
