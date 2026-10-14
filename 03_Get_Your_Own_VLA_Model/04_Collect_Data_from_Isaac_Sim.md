@@ -66,6 +66,41 @@ After pressing `R` to reset the scene, the three camera views look like this. `f
 > [!NOTE]
 > The hardware visible in the lower part of the `front` view (gripper and camera mount) is expected — the wrist camera sits at the front of the lens and looks along the arm. Use `./run.sh --single-viewport` to keep only the main viewport and hide the three floating camera windows; recording is unaffected.
 
+## Optional Task: Pens and Eraser into the Pencil Cup
+
+Besides the default vial task, the project ships an optional `stationery` scene: a fixed pencil cup at `(-0.16, 0.12) m` with two pens and an eraser as the graspable objects. The robot, enclosure and all three cameras are identical to the default scene, and the scene file is generated automatically on first launch:
+
+```bash
+./run.sh --variant stationery
+```
+
+After pressing `R`, the three camera views look like this (`front` and `external` are the recorded streams):
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem; margin: 1.5rem 0;">
+  <figure style="margin: 0;">
+    <img src="../image/camera_preview_stationery_front.png" alt="front camera view in the stationery scene" style="width: 100%; border-radius: 8px; border: 1px solid var(--nv-border);">
+    <figcaption style="text-align: center; font-size: 0.875rem; margin-top: 0.5rem;">front (wrist-mounted, recorded)</figcaption>
+  </figure>
+  <figure style="margin: 0;">
+    <img src="../image/camera_preview_stationery_side.png" alt="side camera view in the stationery scene" style="width: 100%; border-radius: 8px; border: 1px solid var(--nv-border);">
+    <figcaption style="text-align: center; font-size: 0.875rem; margin-top: 0.5rem;">side (fixed, observation only)</figcaption>
+  </figure>
+  <figure style="margin: 0;">
+    <img src="../image/camera_preview_stationery_external.png" alt="external camera view in the stationery scene" style="width: 100%; border-radius: 8px; border: 1px solid var(--nv-border);">
+    <figcaption style="text-align: center; font-size: 0.875rem; margin-top: 0.5rem;">external (overhead, recorded)</figcaption>
+  </figure>
+</div>
+
+The capture flow is the same (`R` reset / `S` record / `C` cancel), and the episode succeeds once all three items rest stably inside the cup. Data is written to a separate dataset so it never mixes with the default vial data:
+
+```bash
+~/rebot-arm-dli-isaacsim/datasets/rebot_stationery_pencil_cup
+# Task text: Put the two pens and the eraser into the pencil cup
+```
+
+> [!NOTE]
+> The stills above were captured on an 8 GB laptop GPU; the speckle noise is a known rendering limitation of that hardware (see the project tutorial, "Known Issues"). On a recommended ≥12 GB RTX 40-series GPU the same scene renders clean.
+
 ## Environmental Requirements
 
 Please confirm the following before starting:

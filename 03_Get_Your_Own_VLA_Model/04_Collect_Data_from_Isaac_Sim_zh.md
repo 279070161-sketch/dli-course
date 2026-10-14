@@ -66,6 +66,41 @@ LeRobot Python bridge -- UDP 127.0.0.1:5005 --> Isaac Sim B601
 > [!NOTE]
 > `front` 画面下方出现夹爪与相机支架硬件属于正常现象——腕部相机安装在镜头前端、沿手臂方向取景。可用 `./run.sh --single-viewport` 只保留主视口、隐藏三个浮动相机窗口，录制不受影响。
 
+## 可选任务：两支笔和橡皮放进笔筒
+
+除了默认的小瓶任务，工程还内置一个可选的 `stationery` 场景：固定笔筒放在工作面 `(-0.16, 0.12) m` 处，两支笔和一块橡皮作为可抓取物体。机器人、围栏与三路相机和默认场景完全一致，场景文件会在首次启动时自动生成：
+
+```bash
+./run.sh --variant stationery
+```
+
+按 `R` 重置后，三路相机的画面如下（`front` 与 `external` 是数据集实际记录的两路视频流）：
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem; margin: 1.5rem 0;">
+  <figure style="margin: 0;">
+    <img src="../image/camera_preview_stationery_front.png" alt="stationery 场景腕部相机画面" style="width: 100%; border-radius: 8px; border: 1px solid var(--nv-border);">
+    <figcaption style="text-align: center; font-size: 0.875rem; margin-top: 0.5rem;">front（腕部安装，录制）</figcaption>
+  </figure>
+  <figure style="margin: 0;">
+    <img src="../image/camera_preview_stationery_side.png" alt="stationery 场景侧视相机画面" style="width: 100%; border-radius: 8px; border: 1px solid var(--nv-border);">
+    <figcaption style="text-align: center; font-size: 0.875rem; margin-top: 0.5rem;">side（固定，仅观察）</figcaption>
+  </figure>
+  <figure style="margin: 0;">
+    <img src="../image/camera_preview_stationery_external.png" alt="stationery 场景顶部相机画面" style="width: 100%; border-radius: 8px; border: 1px solid var(--nv-border);">
+    <figcaption style="text-align: center; font-size: 0.875rem; margin-top: 0.5rem;">external（顶部俯视，录制）</figcaption>
+  </figure>
+</div>
+
+采集流程与默认场景完全相同（`R` 重置 / `S` 录制 / `C` 丢弃），三件文具都稳定放进笔筒时 episode 判定成功。数据写入独立目录，不会和默认的小瓶数据混在一起：
+
+```bash
+~/rebot-arm-dli-isaacsim/datasets/rebot_stationery_pencil_cup
+# 任务文本: Put the two pens and the eraser into the pencil cup
+```
+
+> [!NOTE]
+> 上方截图拍摄于 8GB 笔记本 GPU；画面噪点是该硬件的已知渲染限制（见项目教程"已知问题"一节）。在建议的 ≥12GB RTX 40 系显卡上加载同一场景，相机画面是干净的。
+
 ## 环境要求
 
 开始前请确认以下条件：
